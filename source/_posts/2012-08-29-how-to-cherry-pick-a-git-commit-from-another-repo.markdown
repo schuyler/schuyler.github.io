@@ -36,8 +36,9 @@ Update .themes/classic/source/javascripts/github.js
 Fixed the github repo url to return an valid url and not just .json.
 ```
 
-So `git cherry-pick` to rescue, then just push the current branch back up to
-_my_ origin repo.
+So `git cherry-pick` to the rescue. Just give it a reference to the commit
+you want to cherry pick. You don't even need to say which branch you want it
+from, because Git already knows which branch contains that commit.
 
 ```
 git cherry-pick dd8b24
@@ -46,7 +47,7 @@ git cherry-pick dd8b24
 That's all you have to do as far as Git is concerned.
 
 In terms of fixing the issue in Octopress, note that this doesn't actually
-update `source/`, just `.themes/source/`, so copy the file manually, commit,
+update `source/` -- just `.themes/source/`, so copy the file manually, commit,
 and push.
 
 ```
