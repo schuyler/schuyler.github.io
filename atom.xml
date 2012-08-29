@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[hoc est repo meum.]]></title>
+  <link href="http://schuyler.github.com/atom.xml" rel="self"/>
+  <link href="http://schuyler.github.com/"/>
+  <updated>2012-08-29T15:40:51-07:00</updated>
+  <id>http://schuyler.github.com/</id>
+  <author>
+    <name><![CDATA[Schuyler Erle]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[how to shave a yak, part 1 of n.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html"/>
+    <updated>2012-08-29T12:20:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1</id>
+    <content type="html"><![CDATA[<p>(&#8230; an hour and a half of setting up Octopress later &#8230;)</p>
+
+<p>A new blog is always a hopeful endeavor, isn&#8217;t it? Shining with wide-eyed
+optimism at the prospect of disciplined posting schedules and ever-mounting
+readership.</p>
+
+<p>Well. I don&#8217;t much expect anyone to find their way here except by Googling for
+an error message and finding this by accident. I intend to post about the
+technical problems I have on a daily basis developing and deploying software. I
+just wanted a place to put my notes that wasn&#8217;t <a href="http://iconocla.st/">my personal weblog</a>.</p>
+
+<p><em>Insh&#8217;allah</em>, may you find what you seek here, as I have so often found what I
+sought across the many poorly-written forum posts and antiquated blog entries
+that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow traveller.</p>
+]]></content>
+  </entry>
+  
+</feed>
