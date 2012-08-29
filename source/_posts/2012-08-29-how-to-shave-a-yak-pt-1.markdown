@@ -1,10 +1,12 @@
 ---
 layout: post
-title: New blog.
+title: how to shave a yak, part 1 of n.
 date: 2012-08-29 12:20
 comments: true
 categories: 
 ---
+
+(... an hour and a half of setting up Octopress later ...)
 
 A new blog is always a hopeful endeavor, isn't it? Shining with wide-eyed
 optimism at the prospect of disciplined posting schedules and ever-mounting

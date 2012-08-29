@@ -4,10 +4,10 @@
 
 url: http://schuyler.github.com
 title: hoc est repo meum.
-subtitle: give us this day our daily commit.
+subtitle: or, "today, I learned..."
 author: Schuyler Erle
 simple_search: http://google.com/search
-description: An effort to respond to many years of successfully solving technical problems by Googling for error messages by attempting to log ongoing solutions to daily problems of software engineering and operations in a public place on the Internet.
+description: Responding to many years of successfully solving technical issues by Googling for error messages with an effort to log daily problems and solutions in software engineering and operations to a public place on the Internet.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -89,7 +89,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: schuyler
+disqus_short_name: hocestrepomeum
 disqus_show_comment_count: false
 
 # Google Analytics
