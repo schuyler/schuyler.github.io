@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-29T15:57:42-07:00</updated>
+  <updated>2012-08-29T16:01:47-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -40,7 +40,7 @@ git log djohnsonm/master
 
 <p>```
 commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-Author: David Johnson <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x64;&#x6a;&#x6f;&#x68;&#x6e;&#115;&#111;&#x6e;&#x2e;&#x6d;&#x40;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;">&#x64;&#106;&#111;&#x68;&#110;&#115;&#111;&#110;&#46;&#109;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>
+Author: David Johnson <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x64;&#x6a;&#x6f;&#x68;&#x6e;&#x73;&#x6f;&#x6e;&#46;&#109;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#106;&#111;&#104;&#110;&#115;&#x6f;&#x6e;&#46;&#x6d;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>
 Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 
 <p>Update .themes/classic/source/javascripts/github.js</p>
@@ -53,6 +53,17 @@ Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 
 <p><code>
 git cherry-pick dd8b24
+</code></p>
+
+<p>That's all you have to do as far as Git is concerned.</p>
+
+<p>In terms of fixing the issue in Octopress, note that this doesn't actually
+update <code>source/</code>, just <code>.themes/source/</code>, so copy the file manually, commit,
+and push.</p>
+
+<p><code>
+cp .themes/classic/source/javascripts/github.js source/javascripts/
+git commit -m "Deploy the applied github.js fix."
 git push
 </code></p>
 

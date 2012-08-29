@@ -136,8 +136,20 @@ commit is in there.</p>
 <em>my</em> origin repo.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git cherry-pick dd8b24</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s all you have to do as far as Git is concerned.</p>
+
+<p>In terms of fixing the issue in Octopress, note that this doesn&#8217;t actually
+update <code>source/</code>, just <code>.themes/source/</code>, so copy the file manually, commit,
+and push.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git cherry-pick dd8b24
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cp .themes/classic/source/javascripts/github.js source/javascripts/
+</span><span class='line'>git commit -m "Deploy the applied github.js fix."
 </span><span class='line'>git push</span></code></pre></td></tr></table></div></figure>
 
 
