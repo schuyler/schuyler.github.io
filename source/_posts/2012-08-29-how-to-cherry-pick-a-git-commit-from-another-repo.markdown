@@ -3,7 +3,7 @@ layout: post
 title: how to cherry-pick a Git commit from another repo.
 date: 2012-08-29 15:43
 comments: true
-categories: git
+categories: git octopress
 ---
 
 So, as soon as I got this blog started, I discovered that the Github plugin on
