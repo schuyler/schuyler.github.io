@@ -132,8 +132,9 @@ commit is in there.</p>
 </span><span class='line'>Fixed the github repo url to return an valid url and not just .json.</span></code></pre></td></tr></table></div></figure>
 
 
-<p>So <code>git cherry-pick</code> to rescue, then just push the current branch back up to
-<em>my</em> origin repo.</p>
+<p>So <code>git cherry-pick</code> to the rescue. Just give it a reference to the commit
+you want to cherry pick. You don&#8217;t even need to say which branch you want it
+from, because Git already knows which branch contains that commit.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git cherry-pick dd8b24</span></code></pre></td></tr></table></div></figure>

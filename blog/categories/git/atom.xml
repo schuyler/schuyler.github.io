@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-29T16:01:47-07:00</updated>
+  <updated>2012-08-29T16:03:52-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -40,7 +40,7 @@ git log djohnsonm/master
 
 <p>```
 commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-Author: David Johnson <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x64;&#x6a;&#x6f;&#x68;&#x6e;&#x73;&#x6f;&#x6e;&#46;&#109;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#106;&#111;&#104;&#110;&#115;&#x6f;&#x6e;&#46;&#x6d;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>
+Author: David Johnson <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#100;&#106;&#111;&#104;&#110;&#x73;&#x6f;&#110;&#46;&#109;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#106;&#x6f;&#x68;&#x6e;&#115;&#x6f;&#110;&#46;&#x6d;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>
 Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 
 <p>Update .themes/classic/source/javascripts/github.js</p>
@@ -48,8 +48,9 @@ Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 <p>Fixed the github repo url to return an valid url and not just .json.
 ```</p>
 
-<p>So <code>git cherry-pick</code> to rescue, then just push the current branch back up to
-<em>my</em> origin repo.</p>
+<p>So <code>git cherry-pick</code> to the rescue. Just give it a reference to the commit
+you want to cherry pick. You don't even need to say which branch you want it
+from, because Git already knows which branch contains that commit.</p>
 
 <p><code>
 git cherry-pick dd8b24
