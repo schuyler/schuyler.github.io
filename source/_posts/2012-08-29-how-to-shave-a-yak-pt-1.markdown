@@ -1,6 +1,6 @@
 ---
 layout: post
-title: how to shave a yak, part 1 of n.
+title: How to shave a yak, part 1 of n.
 date: 2012-08-29 12:20
 comments: true
 categories: yaks

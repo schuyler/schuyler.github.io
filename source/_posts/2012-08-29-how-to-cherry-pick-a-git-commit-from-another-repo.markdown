@@ -1,6 +1,6 @@
 ---
 layout: post
-title: how to cherry-pick a Git commit from another repo.
+title: How to cherry-pick a Git commit from another repo.
 date: 2012-08-29 15:43
 comments: true
 categories: git octopress

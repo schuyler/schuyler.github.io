@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "how to setup a new Octopress blog on Github Pages."
+title: "How to setup a new Octopress blog on Github Pages."
 date: 2012-08-29 18:10
 comments: true
 categories: github octopress yak
