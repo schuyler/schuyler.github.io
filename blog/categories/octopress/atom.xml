@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-29T19:23:43-07:00</updated>
+  <updated>2012-08-29T19:30:39-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -226,9 +226,9 @@ git push
 
 <h3>NOW GO BLOGUE AWAY.</h3>
 
-<p>And, for God's <em>sake</em>, change the <code>favicon.png</code> right away.</p>
+<p>And, for God's <em>sake</em>, change the <code>favicon.png</code> right now.</p>
 
-<p>Remember when I said this would be a rapid-fire tutorial?  Whew.</p>
+<p>Remember when I said this would be a rapid-fire tutorial? SHUT UP.</p>
 ]]></content>
   </entry>
   
@@ -259,7 +259,7 @@ git log djohnsonm/master
 
 <p>```
 commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-Author: David Johnson <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#100;&#106;&#111;&#x68;&#110;&#115;&#x6f;&#110;&#x2e;&#109;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x64;&#106;&#111;&#x68;&#110;&#x73;&#x6f;&#x6e;&#46;&#x6d;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a>
+Author: David Johnson <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#100;&#106;&#111;&#104;&#x6e;&#x73;&#111;&#110;&#46;&#109;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x6a;&#x6f;&#x68;&#110;&#x73;&#111;&#x6e;&#46;&#x6d;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>
 Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 
 <p>Update .themes/classic/source/javascripts/github.js</p>
