@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: octopress | hoc est repo meum.]]></title>
-  <link href="http://schuyler.github.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <title><![CDATA[Category: yak | hoc est repo meum.]]></title>
+  <link href="http://schuyler.github.com/blog/categories/yak/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
   <updated>2012-08-29T19:23:07-07:00</updated>
   <id>http://schuyler.github.com/</id>
@@ -229,70 +229,6 @@ git push
 <p>And, for God's <em>sake</em>, change the <code>favicon.png</code> right away.</p>
 
 <p>Remember when I said this would be a rapid-fire tutorial?  Whew.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[how to cherry-pick a Git commit from another repo.]]></title>
-    <link href="http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html"/>
-    <updated>2012-08-29T15:43:00-07:00</updated>
-    <id>http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo</id>
-    <content type="html"><![CDATA[<p>So, as soon as I got this blog started, I discovered that the Github plugin on
-the right side wasn't showing any repos. Naturally, I googled for the
-<a href="https://github.com/imathis/octopress/issues/636">error message</a> and found
-<a href="https://github.com/imathis/octopress/issues/636#issuecomment-8113731">a reference</a> to
-<a href="https://github.com/imathis/octopress/pull/732">a pull request</a> for
-<a href="https://github.com/djohnsonm/octopress/commit/dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214">a commit</a>
-that fixed the issue. How to apply David Johnson's fix without possibly
-screwing up everything else in my local Octopress repo?</p>
-
-<p>First, add his fork as a remote, fetch it, and make sure that the desired
-commit is in there.</p>
-
-<p><code>
-git remote add djohnsonm https://github.com/djohnsonm/octopress.git
-git fetch djohnsonm
-git log djohnsonm/master
-</code></p>
-
-<p>Sure enough, the fix is at the top.</p>
-
-<p>```
-commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-Author: David Johnson <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#100;&#x6a;&#x6f;&#104;&#x6e;&#x73;&#111;&#x6e;&#x2e;&#109;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x64;&#106;&#x6f;&#104;&#x6e;&#115;&#111;&#x6e;&#46;&#109;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a>
-Date:   Tue Aug 28 21:31:20 2012 -0500</p>
-
-<p>Update .themes/classic/source/javascripts/github.js</p>
-
-<p>Fixed the github repo url to return an valid url and not just .json.
-```</p>
-
-<p>So <code>git cherry-pick</code> to the rescue. Just give it a reference to the commit
-you want to cherry pick. You don't even need to say which branch you want it
-from, because Git already knows which branch contains that commit.</p>
-
-<p><code>
-git cherry-pick dd8b24
-</code></p>
-
-<p>That's all you have to do as far as Git is concerned.</p>
-
-<p>In terms of fixing the issue in Octopress, note that this doesn't actually
-update <code>source/</code> -- just <code>.themes/source/</code>, so copy the file manually, commit,
-and push.</p>
-
-<p><code>
-cp .themes/classic/source/javascripts/github.js source/javascripts/
-git commit -m "Deploy the applied github.js fix."
-git push
-</code></p>
-
-<p>Then, since this is Octopress, rebuild the site and deploy.</p>
-
-<p><code>
-rake generate
-rake deploy
-</code></p>
 ]]></content>
   </entry>
   

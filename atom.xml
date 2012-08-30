@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-29T18:09:33-07:00</updated>
+  <updated>2012-08-29T19:23:07-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -12,6 +12,234 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[how to setup a new Octopress blog on Github Pages.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html"/>
+    <updated>2012-08-29T18:10:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages</id>
+    <content type="html"><![CDATA[<p>The yak shaving started when I wanted a new blog that was easy to update, easy
+to maintain, didn&#8217;t depend on anything fancy, wasn&#8217;t my personal blog (still
+running on blosxom), and wasn&#8217;t WordPress. Enter <a href="http://octopress.org/">Octopress</a>,
+whose virtues I will let speak for themselves.</p>
+
+<p>Here is a rapid-fire Octopress Github OS X tutorial on how to get Octopress
+publishing to Github Pages from OS X. I refer you to the
+<a href="http://octopress.org/docs/">Octopress documentation</a>
+for actual detailed instructions.</p>
+
+<h3>Octopress wants Ruby 1.9.3 and OS X comes with 1.8.7.</h3>
+
+<p>Solution: <a href="http://octopress.org/docs/setup/rvm/">Something called RVM</a>. Ruby
+Version Manager? Who cares.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This installs a bunch of crap (i.e. Ruby 1.9) to <code>~/.rvm/</code> in your home
+directory but whatever. It also has the somewhat unsavory side effect of adding
+this to your <code>.bashrc</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hey! Thanks for letting me know, jerk. Well, source your <code>.bashrc</code> to get the
+new version of Ruby and move on.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ source ~/.bashrc</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Get Octopress and its dependencies.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/imathis/octopress.git my_new_blogue
+</span><span class='line'>$ cd my_new_blogue
+</span><span class='line'>$ bundle install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This creates the local repo that will contain your new static weblog
+by <a href="http://octopress.org/docs/setup/">cloning imathis&#8217;s Octopress source tree</a> into <code>my_new_blogue/</code>,
+and then chdirs into it and installs its delightful Ruby prerequisites. Into <code>~/.rvm</code> again. I
+think.</p>
+
+<h3>Copy the classic Octopress theme.</h3>
+
+<p>From inside <code>my_new_blogue/</code> (or whatever you called it):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You want a different theme? Figure it out yourself, kid. Look in
+the <code>.themes/</code> directory.</p>
+
+<h3>Fix some bugs in Octopress manually.</h3>
+
+<p>Hopefully, you are reading this far enough in the future that these
+workarounds are no longer necessary. However, if not, then you
+will want to
+<a href="http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html">fix the busted Github plugin</a> and
+you probably will want to <a href="https://github.com/imathis/octopress/issues/417">fix list indentation</a>. I hope that
+imathis gets around to fixing this stuff in HEAD. Moving along&#8230;</p>
+
+<h3>Setup to deploy to username.github.com</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This does a bunch of stuff, which is
+<a href="http://octopress.org/docs/deploying/github/">documented</a>
+but the part you care about is where it asks you for
+the repo URL, tell it <code>git@github.com:username/username.github.com</code> while
+substituting as necessary.</p>
+
+<h3>Configure your shiny new blog.</h3>
+
+<p><a href="http://octopress.org/docs/configuring/">Configure the thing</a> by editing the <code>_config.yml</code>
+file in the top-level directory. I only changed the following settings. You
+probably want to leave everything else alone, to start.</p>
+
+<ul>
+<li><code>url</code></li>
+<li><code>title</code></li>
+<li><code>subtitle</code></li>
+<li><code>author</code></li>
+<li><code>description</code></li>
+<li><code>github_user</code></li>
+<li><code>twitter_user</code></li>
+<li><code>googleplus_user</code></li>
+<li><code>disqus_short_name</code></li>
+</ul>
+
+
+<p>You&#8217;ll only want to set a <code>disqus_short_name</code> if you want comments. You need to
+<a href="http://disqus.com/">sign up</a> for the Disqus service, of course. I thought it
+wasn&#8217;t a bad idea. Lack of comments was the main thing I came to dislike about
+blosxom, pretty much.</p>
+
+<p>Other stuff I monkeyed with but you probably shouldn&#8217;t unless you know what
+you&#8217;re doing and why:</p>
+
+<ul>
+<li><code>date_format</code></li>
+<li><code>permalink</code></li>
+<li><code>paginate</code></li>
+<li><code>excerpt_link</code></li>
+<li><code>titlecase</code></li>
+<li><code>github_repo_count</code></li>
+<li><code>github_skip_forks</code></li>
+<li><code>twitter_tweet_count</code></li>
+<li><code>googleplus_hidden</code></li>
+<li><code>facebook_like</code></li>
+</ul>
+
+
+<p>I set <code>date_format</code> to <code>"%F"</code> because this is a hacker blog and ISO 8601, so there.</p>
+
+<p>I changed the permalink format because why <em>also</em> put the date in the URL.  <em>Do
+not</em> bother taking <code>/blog/</code> out of the permalink, because that part is
+hardcoded into the archive URL, so <em>le sigh</em>.</p>
+
+<p>I turned off <code>titlecase</code> because I like my titles lowercased, thank you.</p>
+
+<p>I added my G+ ID and FB liking because I am kind of a whore that way. I turned
+off Tweet count because I am not <em>that</em> much of a whore.</p>
+
+<h3>Writing new posts.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake new_post["This is the title of my new post."]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you gotta find the filename it prints out under <code>source/_posts/</code> somewhere
+and go <a href="http://octopress.org/docs/blogging/">edit that file with Markdown</a> or something.</p>
+
+<p>Running <code>rake preview</code> and then visiting
+<a href="http://localhost:4000/">http://localhost:4000/</a> is kind of nice because
+then you actually can see what it&#8217;s all going to look like before you upload to
+Github Pages. A+++ WOULD PREVIEW AGAIN.</p>
+
+<h3>Publishing.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake generate
+</span><span class='line'>$ rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Don&#8217;t ask me why these are two separate steps. Now you can go look at
+http://username.github.com/ or whatever and voilà your new blogue.</p>
+
+<p>BUT WAIT. You&#8217;re not done yet. You&#8217;ve deployed the <em>content</em> but you still have
+to commit your original writings in Markdown format to Github for all
+prosperity. This happens in a separate <code>source</code> branch (which if you run <code>git
+branch</code> you will see is already checked out locally, thanks to <code>rake
+setup_github_pages</code>).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git add .
+</span><span class='line'>$ git commit -m "I made a post." -a
+</span><span class='line'>$ git push</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In other words, your Markdown goes in the <code>source</code> branch and the resulting HTML
+winds up in the <code>master</code> branch, which is what Github is supposed to publish
+at your URL. If this doesn&#8217;t happen &#8211; and it should have already, if you did
+everything in the given order &#8211; then
+<a href="http://octopress.org/docs/deploying/github/">please note the following</a>:</p>
+
+<blockquote><p>Note: With new repositories, Github sets the default branch based on the
+branch you push first, and it looks there for the generated site content. If
+you’re having trouble getting Github to publish your site, go to the admin
+panel for your repository and make sure that the master branch is the default
+branch.</p></blockquote>
+
+<p>At any rate, Github gets to keep both branches, so that you can always
+remake one from the other.</p>
+
+<h3>FOR BONUS POINTS: Custom Domains.</h3>
+
+<p>Set your <code>A</code> record for <code>my-blogue.com</code> to point to <code>207.97.227.245</code> (this is
+an IP address for <code>pages.github.com</code>) and your <code>CNAME</code> for <code>*.my-blogue.com</code> to
+point to <code>username.github.com</code>. <em>Don&#8217;t</em> set your main domain to a <code>CNAME</code>
+instead of an <code>A</code> record, because don&#8217;t, that&#8217;s why.</p>
+
+<p>Then do:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo 'myblogue.com' &gt;&gt; source/CNAME
+</span><span class='line'>rake generate
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And wait ten minutes. Seriously, that&#8217;s it. While you&#8217;re waiting, don&#8217;t forget
+to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add source/CNAME
+</span><span class='line'>git commit -m "Hooray, my very own domain"
+</span><span class='line'>git push</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>NOW GO BLOGUE AWAY.</h3>
+
+<p>And, for God&#8217;s <em>sake</em>, change the <code>favicon.png</code> right away.</p>
+
+<p>Remember when I said this would be a rapid-fire tutorial?  Whew.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[how to cherry-pick a Git commit from another repo.]]></title>

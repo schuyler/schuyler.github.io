@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hoc est repo meum.</title>
+  <title>how to setup a new Octopress blog on Github Pages. - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
@@ -19,7 +19,7 @@ to maintain, didn&#8217;t depend on anything fancy, wasn&#8217;t my &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.com/index.html">
+  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,15 +63,12 @@ to maintain, didn&#8217;t depend on anything fancy, wasn&#8217;t my &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html">how to setup a new Octopress blog on Github Pages.</a></h1>
+      <h1 class="entry-title">how to setup a new Octopress blog on Github Pages.</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@ to maintain, didn&#8217;t depend on anything fancy, wasn&#8217;t my &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>The yak shaving started when I wanted a new blog that was easy to update, easy
+<div class="entry-content"><p>The yak shaving started when I wanted a new blog that was easy to update, easy
 to maintain, didn&#8217;t depend on anything fancy, wasn&#8217;t my personal blog (still
 running on blosxom), and wasn&#8217;t WordPress. Enter <a href="http://octopress.org/">Octopress</a>,
 whose virtues I will let speak for themselves.</p>
@@ -315,124 +312,16 @@ to:</p>
 
 <p>Remember when I said this would be a rapid-fire tutorial?  Whew.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html">how to cherry-pick a Git commit from another repo.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Schuyler Erle</span></span>
 
-<time datetime="2012-08-29T15:43:00-07:00" pubdate data-updated="true">2012-08-29</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So, as soon as I got this blog started, I discovered that the Github plugin on
-the right side wasn&#8217;t showing any repos. Naturally, I googled for the
-<a href="https://github.com/imathis/octopress/issues/636">error message</a> and found
-<a href="https://github.com/imathis/octopress/issues/636#issuecomment-8113731">a reference</a> to
-<a href="https://github.com/imathis/octopress/pull/732">a pull request</a> for
-<a href="https://github.com/djohnsonm/octopress/commit/dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214">a commit</a>
-that fixed the issue. How to apply David Johnson&#8217;s fix without possibly
-screwing up everything else in my local Octopress repo?</p>
-
-<p>First, add his fork as a remote, fetch it, and make sure that the desired
-commit is in there.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git remote add djohnsonm https://github.com/djohnsonm/octopress.git
-</span><span class='line'>git fetch djohnsonm
-</span><span class='line'>git log djohnsonm/master</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sure enough, the fix is at the top.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-</span><span class='line'>Author: David Johnson &lt;djohnson.m@gmail.com&gt;
-</span><span class='line'>Date:   Tue Aug 28 21:31:20 2012 -0500
-</span><span class='line'>
-</span><span class='line'>Update .themes/classic/source/javascripts/github.js
-</span><span class='line'>
-</span><span class='line'>Fixed the github repo url to return an valid url and not just .json.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So <code>git cherry-pick</code> to the rescue. Just give it a reference to the commit
-you want to cherry pick. You don&#8217;t even need to say which branch you want it
-from, because Git already knows which branch contains that commit.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git cherry-pick dd8b24</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s all you have to do as far as Git is concerned.</p>
-
-<p>In terms of fixing the issue in Octopress, note that this doesn&#8217;t actually
-update <code>source/</code> &#8211; just <code>.themes/source/</code>, so copy the file manually, commit,
-and push.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cp .themes/classic/source/javascripts/github.js source/javascripts/
-</span><span class='line'>git commit -m "Deploy the applied github.js fix."
-</span><span class='line'>git push</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then, since this is Octopress, rebuild the site and deploy.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/how-to-shave-a-yak-pt-1.html">how to shave a yak, part 1 of n.</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -444,40 +333,46 @@ and push.</p>
   
 
 
-<time datetime="2012-08-29T12:20:00-07:00" pubdate data-updated="true">2012-08-29</time>
-        
-      </p>
+<time datetime="2012-08-29T18:10:00-07:00" pubdate data-updated="true">2012-08-29</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/yak/'>yak</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>(&#8230; an hour and a half of setting up Octopress later &#8230;)</p>
-
-<p>A new blog is always a hopeful endeavor, isn&#8217;t it? Shining with wide-eyed
-optimism at the prospect of disciplined posting schedules and ever-mounting
-readership.</p>
-
-<p>Well. I don&#8217;t much expect anyone to find their way here except by Googling for
-an error message and finding this by accident. I intend to post about the
-technical problems I have on a daily basis developing and deploying software. I
-just wanted a place to put my notes that wasn&#8217;t <a href="http://iconocla.st/">my personal weblog</a>.</p>
-
-<p><em>Insh&#8217;allah</em>, may you find what you seek here, as I have so often found what I
-sought across the many poorly-written forum posts and antiquated blog entries
-that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow traveller.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html" title="Previous Post: how to cherry-pick a Git commit from another repo.">&laquo; how to cherry-pick a Git commit from another repo.</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -502,7 +397,7 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/schuyler">@schuyler</a> on GitHub
@@ -532,7 +427,7 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -561,6 +456,7 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -575,7 +471,10 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
       var disqus_shortname = 'hocestrepomeum';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html';
+        var disqus_url = 'http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
