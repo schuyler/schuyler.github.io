@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-29T19:30:39-07:00</updated>
+  <updated>2012-08-30T12:22:13-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[how to setup a new Octopress blog on Github Pages.]]></title>
+    <title type="html"><![CDATA[How to setup a new Octopress blog on Github Pages.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html"/>
     <updated>2012-08-29T18:10:00-07:00</updated>
     <id>http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages</id>
@@ -242,7 +242,7 @@ to:</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[how to cherry-pick a Git commit from another repo.]]></title>
+    <title type="html"><![CDATA[How to cherry-pick a Git commit from another repo.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html"/>
     <updated>2012-08-29T15:43:00-07:00</updated>
     <id>http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo</id>
@@ -317,7 +317,7 @@ and push.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[how to shave a yak, part 1 of n.]]></title>
+    <title type="html"><![CDATA[How to shave a yak, part 1 of n.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html"/>
     <updated>2012-08-29T12:20:00-07:00</updated>
     <id>http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1</id>

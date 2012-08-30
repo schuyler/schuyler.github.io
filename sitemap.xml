@@ -2,26 +2,26 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html</loc>
-        <lastmod>2012-08-29T16:03:34-07:00</lastmod>
+        <lastmod>2012-08-30T12:21:37-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html
         </loc>
-        <lastmod>2012-08-29T16:08:56-07:00</lastmod>
+        <lastmod>2012-08-30T12:21:26-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html
         </loc>
-        <lastmod>2012-08-29T19:30:08-07:00</lastmod>
+        <lastmod>2012-08-30T12:21:31-07:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/blog/archives/</loc>
-        <lastmod>2012-08-29T19:30:08-07:00</lastmod>
+        <lastmod>2012-08-30T12:21:37-07:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/</loc>
-        <lastmod>2012-08-29T19:30:08-07:00</lastmod>
+        <lastmod>2012-08-30T12:21:37-07:00</lastmod>
     </url>
 </urlset>
