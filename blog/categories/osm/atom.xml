@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSM | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/osm/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T18:18:07-07:00</updated>
+  <updated>2012-08-30T18:43:29-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -22,9 +22,9 @@
 <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the
 <code>name:*</code> tags, because I'm building a gazetteer and I want all of the
 various localized names of all the places in OpenStreetMap. The option is
-supposed to create an <code>hstore</code> column in the <code>planet_osm_*</code> tables called
-<code>name:</code>, with key-value pairs where the key is whatever comes after that,
-which is usually the ISO code for the language of the name.</p>
+supposed to create an <code>hstore</code> column called <code>name:</code> in the <code>planet_osm_*</code>
+tables, with key-value pairs where the key is whatever comes after that, which
+is usually the ISO code for the language of the name.</p>
 
 <p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
 was created but never populated. What the hell?</p>

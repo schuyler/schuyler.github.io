@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dpkg | hoc est repo meum.]]></title>
+  <link href="http://schuyler.github.com/blog/categories/dpkg/atom.xml" rel="self"/>
+  <link href="http://schuyler.github.com/"/>
+  <updated>2012-08-30T18:43:29-07:00</updated>
+  <id>http://schuyler.github.com/</id>
+  <author>
+    <name><![CDATA[Schuyler Erle]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to install Ubuntu packages non-interactively.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html"/>
+    <updated>2012-08-30T18:26:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively</id>
+    <content type="html"><![CDATA[<p>God bless the German OpenStreetMap developers, because enough of them like
+either Debian or Ubuntu that they ship their source code with Debian packaging.
+Building <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> becomes a
+simple matter of doing this:</p>
+
+<p><code>bash
+$ svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql/
+$ cd osm2pgsql
+$ debuild
+</code></p>
+
+<p>If you do this, you wind up with two Debian packages:</p>
+
+<p><code>bash
+$ ls ../*.deb
+../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+../osm2pgsql_0.80.0-13~precise1_amd64.deb
+</code></p>
+
+<p>Which is great, because then you can install
+<code>openstreetmap-postgis-db-setup</code> using, say, <code>dpkg -i</code>, and it'll
+automatically create a <code>gis</code> user and a <code>gis</code> database with PostGIS
+extensions for use with <code>osm2pgsql</code>. The not-so-great part is that the
+package install asks you a bunch of questions about what you want to call
+the database and the PostgreSQL user, which is fine, until you're trying to
+automate the process of building a Planet.osm database on EC2, and then it
+means your script will hang on a silly curses prompt.</p>
+
+<!-- more -->
+
+
+<p>The solution I found by searching the Internet is to <a href="http://serverfault.com/questions/197495/ubuntu-dpkg-non-interactive-installation">use the
+DEBIAN_FRONTEND environment variable</a>:</p>
+
+<p><code>bash
+$ DEBIAN_FRONTEND=noninteractive dpkg --install ../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+</code></p>
+
+<p>Which is great if you're root. But try to do it with <code>sudo</code> and you're
+boned, because <code>sudo</code> clears the environment as a security measure. Here's
+the fix for that:</p>
+
+<p><code>bash
+$ sudo su -c 'DEBIAN_FRONTEND=noninteractive dpkg --install ../*.deb'
+</code></p>
+
+<p>This uses <code>sudo</code> to start a root shell via <code>su</code> and then executes <code>dpkg</code>
+with the right environment variable from there. Unwieldy, but it works.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Why --hstore-column doesn't work in osm2pgsql. - hoc est repo meum.</title>
+  <title>Category: dpkg - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="Today I tried using the --hstore-column option in
-osm2pgsql to import all the
-name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
+  <meta name="description" content="Category: dpkg">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html">
+  <link rel="canonical" href="http://schuyler.github.comblog/categories/dpkg/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,128 +63,36 @@ name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Why --hstore-column doesn't work in osm2pgsql.</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T18:00:00-07:00" pubdate data-updated="true">2012-08-30</time>
-        
-      </p>
+    <h1 class="entry-title">Category: dpkg</h1>
     
   </header>
-
-
-<div class="entry-content"><p>Today I tried using the <code>--hstore-column</code> option in
-<a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the
-<code>name:*</code> tags, because I&#8217;m building a gazetteer and I want all of the
-various localized names of all the places in OpenStreetMap. The option is
-supposed to create an <code>hstore</code> column called <code>name:</code> in the <code>planet_osm_*</code>
-tables, with key-value pairs where the key is whatever comes after that, which
-is usually the ISO code for the language of the name.</p>
-
-<p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
-was created but never populated. What the hell?</p>
-
-<p>I guess <code>--hstore-column</code> isn&#8217;t widely used, because some adventurous soul
-added some code in <code>output-pgsql.c</code> which very helpfully strips out tags
-from OSM objects that aren&#8217;t listed in the <code>.style</code> file. The giveaway was
-this bit of commentary in <code>pgsql_filter_tags()</code>:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* We used to only go far enough to determine if it&#39;s a polygon or not,</span>
-</span><span class='line'><span class="cm">but now we go through and filter stuff we don&#39;t need */</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I guess whoever made the change accidentally forgot to check
-<code>Options-&gt;hstore_columns</code>. Understandable. Osm2pgsql&#8217;s hstore support is
-kind of an outlier of a feature. Well, not to worry. I
-<a href="https://github.com/schuyler/osm2pgsql/commit/c19b6bb52338cddd9dcb9c8d0ecfda85be2b8eda">fixed it</a>
-in my Github mirror, and
-<a href="https://trac.openstreetmap.org/ticket/4547">filed a bug</a> with a patch in OSM&#8217;s
-Trac. As a bonus, <code>--hstore-column</code> once again respects <code>--hstore-match-only</code>.</p>
-
-<p>Apparently, I have an OSM SVN account, but it&#8217;s been so long since I
-committed anything that I forget my password, so now I&#8217;m waiting for an
-admin to reset it. Otherwise, I&#8217;d commit the patch myself. Oops!</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Schuyler Erle</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2012</h2>
+
+<article>
+  
+<h1><a href="/blog/how-to-install-ubuntu-packages-non-interactively.html">How to install Ubuntu packages non-interactively.</a></h1>
+<time datetime="2012-08-30T18:26:00-07:00" pubdate><span class='month'>Aug</span> <span class='day'>30</span> <span class='year'>2012</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/dpkg/'>dpkg</a>, <a class='category' href='/blog/categories/osm2pgsql/'>osm2pgsql</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
+</footer>
 
 
-<time datetime="2012-08-30T18:00:00-07:00" pubdate data-updated="true">2012-08-30</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/osm/'>OSM</a>, <a class='category' href='/blog/categories/osm2pgsql/'>osm2pgsql</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html" >Tweet</a>
-  
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html" title="Previous Post: How to setup a new Octopress blog on Github Pages.">&laquo; How to setup a new Octopress blog on Github Pages.</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/how-to-install-ubuntu-packages-non-interactively.html" title="Next Post: How to install Ubuntu packages non-interactively.">How to install Ubuntu packages non-interactively. &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -308,10 +214,7 @@ admin to reset it. Otherwise, I&#8217;d commit the patch myself. Oops!</p>
       var disqus_shortname = 'hocestrepomeum';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html';
-        var disqus_url = 'http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

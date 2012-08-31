@@ -18,14 +18,20 @@
     </url>
     <url>
         <loc>http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html</loc>
-        <lastmod>2012-08-30T18:17:57-07:00</lastmod>
+        <lastmod>2012-08-30T18:18:55-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html
+        </loc>
+        <lastmod>2012-08-30T18:43:24-07:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/blog/archives/</loc>
-        <lastmod>2012-08-30T18:17:57-07:00</lastmod>
+        <lastmod>2012-08-30T18:43:24-07:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/</loc>
-        <lastmod>2012-08-30T18:17:57-07:00</lastmod>
+        <lastmod>2012-08-30T18:43:24-07:00</lastmod>
     </url>
 </urlset>

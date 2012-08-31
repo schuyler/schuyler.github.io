@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T18:18:07-07:00</updated>
+  <updated>2012-08-30T18:43:29-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to install Ubuntu packages non-interactively.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html"/>
+    <updated>2012-08-30T18:26:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively</id>
+    <content type="html"><![CDATA[<p>God bless the German OpenStreetMap developers, because enough of them like
+either Debian or Ubuntu that they ship their source code with Debian packaging.
+Building <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> becomes a
+simple matter of doing this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql/
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>osm2pgsql
+</span><span class='line'><span class="nv">$ </span>debuild
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you do this, you wind up with two Debian packages:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ls ../*.deb
+</span><span class='line'>../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+</span><span class='line'>../osm2pgsql_0.80.0-13~precise1_amd64.deb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which is great, because then you can install
+<code>openstreetmap-postgis-db-setup</code> using, say, <code>dpkg -i</code>, and it&#8217;ll
+automatically create a <code>gis</code> user and a <code>gis</code> database with PostGIS
+extensions for use with <code>osm2pgsql</code>. The not-so-great part is that the
+package install asks you a bunch of questions about what you want to call
+the database and the PostgreSQL user, which is fine, until you&#8217;re trying to
+automate the process of building a Planet.osm database on EC2, and then it
+means your script will hang on a silly curses prompt.</p>
+
+<!-- more -->
+
+
+<p>The solution I found by searching the Internet is to <a href="http://serverfault.com/questions/197495/ubuntu-dpkg-non-interactive-installation">use the
+DEBIAN_FRONTEND environment variable</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive dpkg --install ../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which is great if you&#8217;re root. But try to do it with <code>sudo</code> and you&#8217;re
+boned, because <code>sudo</code> clears the environment as a security measure. Here&#8217;s
+the fix for that:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo su -c <span class="s1">&#39;DEBIAN_FRONTEND=noninteractive dpkg --install ../*.deb&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This uses <code>sudo</code> to start a root shell via <code>su</code> and then executes <code>dpkg</code>
+with the right environment variable from there. Unwieldy, but it works.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Why --hstore-column doesn't work in osm2pgsql.]]></title>
@@ -22,9 +86,9 @@
 <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the
 <code>name:*</code> tags, because I&#8217;m building a gazetteer and I want all of the
 various localized names of all the places in OpenStreetMap. The option is
-supposed to create an <code>hstore</code> column in the <code>planet_osm_*</code> tables called
-<code>name:</code>, with key-value pairs where the key is whatever comes after that,
-which is usually the ISO code for the language of the name.</p>
+supposed to create an <code>hstore</code> column called <code>name:</code> in the <code>planet_osm_*</code>
+tables, with key-value pairs where the key is whatever comes after that, which
+is usually the ISO code for the language of the name.</p>
 
 <p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
 was created but never populated. What the hell?</p>

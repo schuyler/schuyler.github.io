@@ -9,9 +9,8 @@
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="Today I tried using the --hstore-column option in
-osm2pgsql to import all the
-name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
+  <meta name="description" content="God bless the German OpenStreetMap developers, because enough of them like
+either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +71,79 @@ name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/how-to-install-ubuntu-packages-non-interactively.html">How to install Ubuntu packages non-interactively.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-30T18:26:00-07:00" pubdate data-updated="true">2012-08-30</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>God bless the German OpenStreetMap developers, because enough of them like
+either Debian or Ubuntu that they ship their source code with Debian packaging.
+Building <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> becomes a
+simple matter of doing this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql/
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>osm2pgsql
+</span><span class='line'><span class="nv">$ </span>debuild
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you do this, you wind up with two Debian packages:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ls ../*.deb
+</span><span class='line'>../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+</span><span class='line'>../osm2pgsql_0.80.0-13~precise1_amd64.deb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which is great, because then you can install
+<code>openstreetmap-postgis-db-setup</code> using, say, <code>dpkg -i</code>, and it&#8217;ll
+automatically create a <code>gis</code> user and a <code>gis</code> database with PostGIS
+extensions for use with <code>osm2pgsql</code>. The not-so-great part is that the
+package install asks you a bunch of questions about what you want to call
+the database and the PostgreSQL user, which is fine, until you&#8217;re trying to
+automate the process of building a Planet.osm database on EC2, and then it
+means your script will hang on a silly curses prompt.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/how-to-install-ubuntu-packages-non-interactively.html">More &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html">Why &#8211;hstore-column doesn&#8217;t work in osm2pgsql.</a></h1>
     
     
@@ -99,9 +171,9 @@ name:* tags, because I&#8217;m building a gazetteer and I want all of &hellip;">
 <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the
 <code>name:*</code> tags, because I&#8217;m building a gazetteer and I want all of the
 various localized names of all the places in OpenStreetMap. The option is
-supposed to create an <code>hstore</code> column in the <code>planet_osm_*</code> tables called
-<code>name:</code>, with key-value pairs where the key is whatever comes after that,
-which is usually the ISO code for the language of the name.</p>
+supposed to create an <code>hstore</code> column called <code>name:</code> in the <code>planet_osm_*</code>
+tables, with key-value pairs where the key is whatever comes after that, which
+is usually the ISO code for the language of the name.</p>
 
 <p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
 was created but never populated. What the hell?</p>
@@ -565,6 +637,10 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/how-to-install-ubuntu-packages-non-interactively.html">How to install Ubuntu packages non-interactively.</a>
+      </li>
     
       <li class="post">
         <a href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html">Why &#8211;hstore-column doesn&#8217;t work in osm2pgsql.</a>
