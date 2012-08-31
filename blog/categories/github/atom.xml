@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T18:43:29-07:00</updated>
+  <updated>2012-08-30T18:45:57-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -27,6 +27,9 @@ whose virtues I will let speak for themselves.</p>
 publishing to Github Pages from OS X. I refer you to the
 <a href="http://octopress.org/docs/">Octopress documentation</a>
 for actual detailed instructions.</p>
+
+<!-- more -->
+
 
 <h3>Octopress wants Ruby 1.9.3 and OS X comes with 1.8.7.</h3>
 

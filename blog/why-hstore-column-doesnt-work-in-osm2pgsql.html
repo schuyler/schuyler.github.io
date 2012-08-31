@@ -103,6 +103,9 @@ is usually the ISO code for the language of the name.</p>
 <p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
 was created but never populated. What the hell?</p>
 
+<!-- more -->
+
+
 <p>I guess <code>--hstore-column</code> isn&#8217;t widely used, because some adventurous soul
 added some code in <code>output-pgsql.c</code> which very helpfully strips out tags
 from OSM objects that aren&#8217;t listed in the <code>.style</code> file. The giveaway was

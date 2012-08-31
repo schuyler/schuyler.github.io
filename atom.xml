@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T18:43:29-07:00</updated>
+  <updated>2012-08-30T18:45:57-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -93,6 +93,9 @@ is usually the ISO code for the language of the name.</p>
 <p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
 was created but never populated. What the hell?</p>
 
+<!-- more -->
+
+
 <p>I guess <code>--hstore-column</code> isn&#8217;t widely used, because some adventurous soul
 added some code in <code>output-pgsql.c</code> which very helpfully strips out tags
 from OSM objects that aren&#8217;t listed in the <code>.style</code> file. The giveaway was
@@ -133,6 +136,9 @@ whose virtues I will let speak for themselves.</p>
 publishing to Github Pages from OS X. I refer you to the
 <a href="http://octopress.org/docs/">Octopress documentation</a>
 for actual detailed instructions.</p>
+
+<!-- more -->
+
 
 <h3>Octopress wants Ruby 1.9.3 and OS X comes with 1.8.7.</h3>
 
@@ -360,6 +366,9 @@ the right side wasn&#8217;t showing any repos. Naturally, I googled for the
 <a href="https://github.com/djohnsonm/octopress/commit/dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214">a commit</a>
 that fixed the issue. How to apply David Johnson&#8217;s fix without possibly
 screwing up everything else in my local Octopress repo?</p>
+
+<!-- more -->
+
 
 <p>First, add his fork as a remote, fetch it, and make sure that the desired
 commit is in there.</p>
