@@ -17,6 +17,8 @@ is usually the ISO code for the language of the name.
 However, when I ran `osm2pgsql` with `--hstore-column "name:*"`, the column
 was created but never populated. What the hell?
 
+<!-- more -->
+
 I guess `--hstore-column` isn't widely used, because some adventurous soul
 added some code in `output-pgsql.c` which very helpfully strips out tags
 from OSM objects that aren't listed in the `.style` file. The giveaway was

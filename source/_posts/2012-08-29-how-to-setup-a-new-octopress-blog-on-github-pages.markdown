@@ -16,6 +16,8 @@ publishing to Github Pages from OS X. I refer you to the
 [Octopress documentation](http://octopress.org/docs/)
 for actual detailed instructions.
 
+<!-- more -->
+
 ### Octopress wants Ruby 1.9.3 and OS X comes with 1.8.7.
 
 Solution: [Something called RVM](http://octopress.org/docs/setup/rvm/). Ruby

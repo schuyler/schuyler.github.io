@@ -15,6 +15,8 @@ the right side wasn't showing any repos. Naturally, I googled for the
 that fixed the issue. How to apply David Johnson's fix without possibly
 screwing up everything else in my local Octopress repo?
 
+<!-- more -->
+
 First, add his fork as a remote, fetch it, and make sure that the desired
 commit is in there.
 
