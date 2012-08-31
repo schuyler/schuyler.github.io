@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T12:51:46-07:00</updated>
+  <updated>2012-08-30T18:18:07-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Why --hstore-column doesn't work in osm2pgsql.]]></title>
+    <link href="http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html"/>
+    <updated>2012-08-30T18:00:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql</id>
+    <content type="html"><![CDATA[<p>Today I tried using the <code>--hstore-column</code> option in
+<a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the
+<code>name:*</code> tags, because I&#8217;m building a gazetteer and I want all of the
+various localized names of all the places in OpenStreetMap. The option is
+supposed to create an <code>hstore</code> column in the <code>planet_osm_*</code> tables called
+<code>name:</code>, with key-value pairs where the key is whatever comes after that,
+which is usually the ISO code for the language of the name.</p>
+
+<p>However, when I ran <code>osm2pgsql</code> with <code>--hstore-column "name:*"</code>, the column
+was created but never populated. What the hell?</p>
+
+<p>I guess <code>--hstore-column</code> isn&#8217;t widely used, because some adventurous soul
+added some code in <code>output-pgsql.c</code> which very helpfully strips out tags
+from OSM objects that aren&#8217;t listed in the <code>.style</code> file. The giveaway was
+this bit of commentary in <code>pgsql_filter_tags()</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* We used to only go far enough to determine if it&#39;s a polygon or not,</span>
+</span><span class='line'><span class="cm">but now we go through and filter stuff we don&#39;t need */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I guess whoever made the change accidentally forgot to check
+<code>Options-&gt;hstore_columns</code>. Understandable. Osm2pgsql&#8217;s hstore support is
+kind of an outlier of a feature. Well, not to worry. I
+<a href="https://github.com/schuyler/osm2pgsql/commit/c19b6bb52338cddd9dcb9c8d0ecfda85be2b8eda">fixed it</a>
+in my Github mirror, and
+<a href="https://trac.openstreetmap.org/ticket/4547">filed a bug</a> with a patch in OSM&#8217;s
+Trac. As a bonus, <code>--hstore-column</code> once again respects <code>--hstore-match-only</code>.</p>
+
+<p>Apparently, I have an OSM SVN account, but it&#8217;s been so long since I
+committed anything that I forget my password, so now I&#8217;m waiting for an
+admin to reset it. Otherwise, I&#8217;d commit the patch myself. Oops!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to setup a new Octopress blog on Github Pages.]]></title>
