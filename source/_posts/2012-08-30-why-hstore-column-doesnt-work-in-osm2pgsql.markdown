@@ -41,3 +41,8 @@ Apparently, I have an OSM SVN account, but it's been so long since I
 committed anything that I forget my password, so now I'm waiting for an
 admin to reset it. Otherwise, I'd commit the patch myself. Oops!
 
+__UPDATE__ (2012-09-02): TomH was kind enough to reset my password, so
+I [committed my patch](https://trac.openstreetmap.org/changeset/28671/applications/utils/export/osm2pgsql) but apmon discovered that a logic bug
+caused segfaults when no `--hstore-column` flag was set, so he
+[fixed that](https://trac.openstreetmap.org/changeset/28683/applications/utils/export/osm2pgsql). Both changes are now in [Subversion](https://trac.openstreetmap.org/browser/applications/utils/export/osm2pgsql) and in
+[my github repo](http://github.com/schuyler/osm2pgsql).
