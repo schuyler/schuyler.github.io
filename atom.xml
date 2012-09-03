@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-08-30T18:45:57-07:00</updated>
+  <updated>2012-09-02T23:04:15-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -119,6 +119,12 @@ Trac. As a bonus, <code>--hstore-column</code> once again respects <code>--hstor
 <p>Apparently, I have an OSM SVN account, but it&#8217;s been so long since I
 committed anything that I forget my password, so now I&#8217;m waiting for an
 admin to reset it. Otherwise, I&#8217;d commit the patch myself. Oops!</p>
+
+<p><strong>UPDATE</strong> (2012-09-02): TomH was kind enough to reset my password, so
+I <a href="https://trac.openstreetmap.org/changeset/28671/applications/utils/export/osm2pgsql">committed my patch</a> but apmon discovered that a logic bug
+caused segfaults when no <code>--hstore-column</code> flag was set, so he
+<a href="https://trac.openstreetmap.org/changeset/28683/applications/utils/export/osm2pgsql">fixed that</a>. Both changes are now in <a href="https://trac.openstreetmap.org/browser/applications/utils/export/osm2pgsql">Subversion</a> and in
+<a href="http://github.com/schuyler/osm2pgsql">my github repo</a>.</p>
 ]]></content>
   </entry>
   
