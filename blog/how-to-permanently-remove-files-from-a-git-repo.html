@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How to shave a yak, part 1 of n. - hoc est repo meum.</title>
+  <title>How to permanently remove files from a Git repository. - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="(&#8230; an hour and a half of setting up Octopress later &#8230;) A new blog is always a hopeful endeavor, isn&#8217;t it? Shining with wide-eyed &hellip;">
+  <meta name="description" content="Oops. I did a git commit . and then the subsequent git push took
+suspiciously long. Yep, that&#8217;s right, I&#8217;ve pushed a gigantic binary up &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html">
+  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">How to shave a yak, part 1 of n.</h1>
+      <h1 class="entry-title">How to permanently remove files from a Git repository.</h1>
     
     
       <p class="meta">
@@ -83,27 +84,72 @@
   
 
 
-<time datetime="2012-08-29T12:20:00-07:00" pubdate data-updated="true">2012-08-29</time>
+<time datetime="2012-09-06T10:22:00-07:00" pubdate data-updated="true">2012-09-06</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>(&#8230; an hour and a half of setting up Octopress later &#8230;)</p>
+<div class="entry-content"><p>Oops. I did a <code>git commit .</code> and then the subsequent <code>git push</code> took
+suspiciously long. Yep, that&#8217;s right, I&#8217;ve pushed a gigantic binary up to my
+remote Git repo by accident. How do I remove the file from the repository
+permanently?</p>
 
-<p>A new blog is always a hopeful endeavor, isn&#8217;t it? Shining with wide-eyed
-optimism at the prospect of disciplined posting schedules and ever-mounting
-readership.</p>
+<!-- more -->
 
-<p>Well. I don&#8217;t much expect anyone to find their way here except by Googling for
-an error message and finding this by accident. I intend to post about the
-technical problems I have on a daily basis developing and deploying software. I
-just wanted a place to put my notes that wasn&#8217;t <a href="http://iconocla.st/">my personal weblog</a>.</p>
 
-<p><em>Insh&#8217;allah</em>, may you find what you seek here, as I have so often found what I
-sought across the many poorly-written forum posts and antiquated blog entries
-that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow traveller.</p>
+<p>I found a
+<a href="http://dound.com/2009/04/git-forever-remove-files-or-folders-from-history/">basic solution</a>
+given as a shell script, which I just decided to run manually on my local repo.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git filter-branch -f --index-filter <span class="s2">&quot;git rm -rf --cached --ignore-unmatch full/path/to/the/offending.file&quot;</span> HEAD
+</span><span class='line'>Rewrite 118bbd4b7b02f01cc221c11aec2705cbxxxxxxxx <span class="o">(</span>59/59<span class="o">)</span>
+</span><span class='line'>Ref <span class="s1">&#39;refs/heads/master&#39;</span> was rewritten
+</span><span class='line'><span class="nv">$ </span>rm -rf .git/refs/original/ <span class="o">&amp;&amp;</span> git reflog expire --all <span class="o">&amp;&amp;</span>  git gc --aggressive --prune
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can
+<a href="http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository">read a little more</a>
+about how this works, if you like.</p>
+
+<p>This approach worked fine locally, but doing a forced push with <code>git push -f</code>
+gave me a <code>[remote rejected]</code> error, apparently because, as described
+in <a href="http://stackoverflow.com/questions/1270514/undoing-a-git-push">this StackOverflow post</a>,
+I have the remote repo configured with <code>receive.denyNonFastForwards</code>.</p>
+
+<p>Fortunately, this clusterfuck was on a private repository on my own server, so
+I could log in and repair the damage manually. If the repo was on Github, I&#8217;d have
+been <a href="https://help.github.com/articles/remove-sensitive-data">basically out of luck</a>.</p>
+
+<p>So I logged in and ran <code>su</code> in order to run commands as the <code>git</code> user on my
+system (which owns the remote repos).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo su - git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /path/to/my/repo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then I ran the <code>git filter-branch</code> command above on the remote repo, which succeeded,
+and then running <code>git pull</code> locally also succeeded:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> + 119bbd4...eeaxxxxx master -&gt; origin/master  <span class="o">(</span>forced update<span class="o">)</span>
+</span><span class='line'>Merge made by recursive.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The lesson? Always run <code>git status</code> before running <code>git commit .</code> or <code>git
+commit -a</code> &#8211; and use <code>git commit --amend</code> judiciously <em>before</em> <code>git push</code> if
+you screw up! Screwups in the local repo</p>
 </div>
 
 
@@ -126,12 +172,12 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
   
 
 
-<time datetime="2012-08-29T12:20:00-07:00" pubdate data-updated="true">2012-08-29</time>
+<time datetime="2012-09-06T10:22:00-07:00" pubdate data-updated="true">2012-09-06</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/yaks/'>yaks</a>
+    <a class='category' href='/blog/categories/git/'>git</a>
   
 </span>
 
@@ -140,7 +186,7 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html" >Tweet</a>
   
   
   
@@ -151,8 +197,8 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/how-to-install-ubuntu-packages-non-interactively.html" title="Previous Post: How to install Ubuntu packages non-interactively.">&laquo; How to install Ubuntu packages non-interactively.</a>
       
-        <a class="basic-alignment right" href="/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html" title="Next Post: How to cherry-pick a Git commit from another repo.">How to cherry-pick a Git commit from another repo. &raquo;</a>
       
     </p>
   </footer>
@@ -285,8 +331,8 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html';
-        var disqus_url = 'http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html';
+        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html';
+        var disqus_url = 'http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html';
         var disqus_script = 'embed.js';
       
     (function () {

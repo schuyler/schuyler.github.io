@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-02T23:04:15-07:00</updated>
+  <updated>2012-09-06T11:34:56-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to permanently remove files from a Git repository.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html"/>
+    <updated>2012-09-06T10:22:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo</id>
+    <content type="html"><![CDATA[<p>Oops. I did a <code>git commit .</code> and then the subsequent <code>git push</code> took
+suspiciously long. Yep, that&#8217;s right, I&#8217;ve pushed a gigantic binary up to my
+remote Git repo by accident. How do I remove the file from the repository
+permanently?</p>
+
+<!-- more -->
+
+
+<p>I found a
+<a href="http://dound.com/2009/04/git-forever-remove-files-or-folders-from-history/">basic solution</a>
+given as a shell script, which I just decided to run manually on my local repo.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git filter-branch -f --index-filter <span class="s2">&quot;git rm -rf --cached --ignore-unmatch full/path/to/the/offending.file&quot;</span> HEAD
+</span><span class='line'>Rewrite 118bbd4b7b02f01cc221c11aec2705cbxxxxxxxx <span class="o">(</span>59/59<span class="o">)</span>
+</span><span class='line'>Ref <span class="s1">&#39;refs/heads/master&#39;</span> was rewritten
+</span><span class='line'><span class="nv">$ </span>rm -rf .git/refs/original/ <span class="o">&amp;&amp;</span> git reflog expire --all <span class="o">&amp;&amp;</span>  git gc --aggressive --prune
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can
+<a href="http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository">read a little more</a>
+about how this works, if you like.</p>
+
+<p>This approach worked fine locally, but doing a forced push with <code>git push -f</code>
+gave me a <code>[remote rejected]</code> error, apparently because, as described
+in <a href="http://stackoverflow.com/questions/1270514/undoing-a-git-push">this StackOverflow post</a>,
+I have the remote repo configured with <code>receive.denyNonFastForwards</code>.</p>
+
+<p>Fortunately, this clusterfuck was on a private repository on my own server, so
+I could log in and repair the damage manually. If the repo was on Github, I&#8217;d have
+been <a href="https://help.github.com/articles/remove-sensitive-data">basically out of luck</a>.</p>
+
+<p>So I logged in and ran <code>su</code> in order to run commands as the <code>git</code> user on my
+system (which owns the remote repos).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo su - git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /path/to/my/repo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then I ran the <code>git filter-branch</code> command above on the remote repo, which succeeded,
+and then running <code>git pull</code> locally also succeeded:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> + 119bbd4...eeaxxxxx master -&gt; origin/master  <span class="o">(</span>forced update<span class="o">)</span>
+</span><span class='line'>Merge made by recursive.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The lesson? Always run <code>git status</code> before running <code>git commit .</code> or <code>git
+commit -a</code> &#8211; and use <code>git commit --amend</code> judiciously <em>before</em> <code>git push</code> if
+you screw up! Screwups in the local repo</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to install Ubuntu packages non-interactively.]]></title>
