@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: OSM - hoc est repo meum.</title>
+  <title>How to fix install_name_tool errors with virtualenv on OS X - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="Category: OSM">
+  <meta name="description" content="This Github ticket comment
+solved an issue I was having on OS X 10.6, where running virtualenv . locally
+failed with this error: 1
+2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.comblog/categories/osm/index.html">
+  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,36 +66,116 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: OSM</h1>
+    
+      <h1 class="entry-title">How to fix install_name_tool errors with virtualenv on OS X</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T17:10:00-07:00" pubdate data-updated="true">2012-09-07</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="https://github.com/pypa/virtualenv/issues/7#issuecomment-3354141">This Github ticket comment</a>
+solved an issue I was having on OS X 10.6, where running <code>virtualenv .</code> locally
+failed with this error:</p>
 
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html">Why --hstore-column doesn't work in osm2pgsql.</a></h1>
-<time datetime="2012-08-30T18:00:00-07:00" pubdate><span class='month'>Aug</span> <span class='day'>30</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/osm/'>OSM</a>, <a class='category' href='/blog/categories/osm2pgsql/'>osm2pgsql</a></span>
-</footer>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>install_name_tool: for architecture cputype (16777223) cpusubtype (-2147483645)
+</span><span class='line'>Could not call install_name_tool -- you must have Apple's development tools installed</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>The fix was installing the <code>feature/install_name_tool</code> branch of Gregg Lind&#8217;s
+virtualenv fork.</p>
 
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/gregglind/virtualenv.git
+</span><span class='line'>cd virtualenv
+</span><span class='line'>git checkout feature/install_name_tool
+</span><span class='line'>sudo python setup.py install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thank goodness (and Gregg) I don&#8217;t have to download and reinstall XCode.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Schuyler Erle</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T17:10:00-07:00" pubdate data-updated="true">2012-09-07</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/virtualenv/'>virtualenv</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/how-to-permanently-remove-files-from-a-git-repo.html" title="Previous Post: How to permanently remove files from a Git repository.">&laquo; How to permanently remove files from a Git repository.</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -214,7 +297,10 @@
       var disqus_shortname = 'hocestrepomeum';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html';
+        var disqus_url = 'http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

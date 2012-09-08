@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: osx | hoc est repo meum.]]></title>
+  <link href="http://schuyler.github.com/blog/categories/osx/atom.xml" rel="self"/>
+  <link href="http://schuyler.github.com/"/>
+  <updated>2012-09-07T17:16:52-07:00</updated>
+  <id>http://schuyler.github.com/</id>
+  <author>
+    <name><![CDATA[Schuyler Erle]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to fix install_name_tool errors with virtualenv on OS X]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html"/>
+    <updated>2012-09-07T17:10:00-07:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/pypa/virtualenv/issues/7#issuecomment-3354141">This Github ticket comment</a>
+solved an issue I was having on OS X 10.6, where running <code>virtualenv .</code> locally
+failed with this error:</p>
+
+<p><code>
+install_name_tool: for architecture cputype (16777223) cpusubtype (-2147483645)
+Could not call install_name_tool -- you must have Apple's development tools installed
+</code></p>
+
+<p>The fix was installing the <code>feature/install_name_tool</code> branch of Gregg Lind's
+virtualenv fork.</p>
+
+<p><code>
+git clone https://github.com/gregglind/virtualenv.git
+cd virtualenv
+git checkout feature/install_name_tool
+sudo python setup.py install
+</code></p>
+
+<p>Thank goodness (and Gregg) I don't have to download and reinstall XCode.</p>
+]]></content>
+  </entry>
+  
+</feed>

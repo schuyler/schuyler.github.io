@@ -9,8 +9,10 @@
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="Oops. I did a git commit . and then the subsequent git push took
-suspiciously long. Yep, that&#8217;s right, I&#8217;ve pushed a gigantic binary up &hellip;">
+  <meta name="description" content="This Github ticket comment
+solved an issue I was having on OS X 10.6, where running virtualenv . locally
+failed with this error: 1
+2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +67,65 @@ suspiciously long. Yep, that&#8217;s right, I&#8217;ve pushed a gigantic binary 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html">How to fix install_name_tool errors with virtualenv on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T17:10:00-07:00" pubdate data-updated="true">2012-09-07</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/pypa/virtualenv/issues/7#issuecomment-3354141">This Github ticket comment</a>
+solved an issue I was having on OS X 10.6, where running <code>virtualenv .</code> locally
+failed with this error:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>install_name_tool: for architecture cputype (16777223) cpusubtype (-2147483645)
+</span><span class='line'>Could not call install_name_tool -- you must have Apple's development tools installed</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The fix was installing the <code>feature/install_name_tool</code> branch of Gregg Lind&#8217;s
+virtualenv fork.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/gregglind/virtualenv.git
+</span><span class='line'>cd virtualenv
+</span><span class='line'>git checkout feature/install_name_tool
+</span><span class='line'>sudo python setup.py install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thank goodness (and Gregg) I don&#8217;t have to download and reinstall XCode.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -404,6 +465,10 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html">How to fix install_name_tool errors with virtualenv on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/how-to-permanently-remove-files-from-a-git-repo.html">How to permanently remove files from a Git repository.</a>
       </li>
     
@@ -417,10 +482,6 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
     
       <li class="post">
         <a href="/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html">How to setup a new Octopress blog on Github Pages.</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html">How to cherry-pick a Git commit from another repo.</a>
       </li>
     
   </ul>
