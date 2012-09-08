@@ -4,7 +4,7 @@
   <title><![CDATA[hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:16:52-07:00</updated>
+  <updated>2012-09-07T17:28:51-07:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How to fix install_name_tool errors with virtualenv on OS X]]></title>
+    <title type="html"><![CDATA[How to fix install_name_tool errors with virtualenv on OS X.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html"/>
     <updated>2012-09-07T17:10:00-07:00</updated>
     <id>http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x</id>
