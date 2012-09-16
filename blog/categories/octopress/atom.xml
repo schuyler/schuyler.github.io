@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:28:51-07:00</updated>
+  <updated>2012-09-16T09:55:38-10:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to setup a new Octopress blog on Github Pages.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html"/>
-    <updated>2012-08-29T18:10:00-07:00</updated>
+    <updated>2012-08-29T18:10:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages</id>
     <content type="html"><![CDATA[<p>The yak shaving started when I wanted a new blog that was easy to update, easy
 to maintain, didn't depend on anything fancy, wasn't my personal blog (still
@@ -238,7 +238,7 @@ git push
   <entry>
     <title type="html"><![CDATA[How to cherry-pick a Git commit from another repo.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html"/>
-    <updated>2012-08-29T15:43:00-07:00</updated>
+    <updated>2012-08-29T15:43:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo</id>
     <content type="html"><![CDATA[<p>So, as soon as I got this blog started, I discovered that the Github plugin on
 the right side wasn't showing any repos. Naturally, I googled for the
@@ -265,7 +265,7 @@ git log djohnsonm/master
 
 <p>```
 commit dd8b24f94c6cb86124d7bc3c8cf0ada6c974e214
-Author: David Johnson <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#100;&#106;&#x6f;&#x68;&#x6e;&#115;&#x6f;&#x6e;&#x2e;&#x6d;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#x6a;&#111;&#104;&#x6e;&#115;&#x6f;&#x6e;&#46;&#x6d;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a>
+Author: David Johnson <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x64;&#106;&#111;&#x68;&#110;&#115;&#x6f;&#110;&#46;&#x6d;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#100;&#x6a;&#x6f;&#x68;&#x6e;&#115;&#111;&#x6e;&#46;&#109;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>
 Date:   Tue Aug 28 21:31:20 2012 -0500</p>
 
 <p>Update .themes/classic/source/javascripts/github.js</p>

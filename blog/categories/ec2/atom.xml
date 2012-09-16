@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ec2 | hoc est repo meum.]]></title>
+  <link href="http://schuyler.github.com/blog/categories/ec2/atom.xml" rel="self"/>
+  <link href="http://schuyler.github.com/"/>
+  <updated>2012-09-16T09:55:38-10:00</updated>
+  <id>http://schuyler.github.com/</id>
+  <author>
+    <name><![CDATA[Schuyler Erle]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to make an AMI from a running Ubuntu EC2 instance.]]></title>
+    <link href="http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html"/>
+    <updated>2012-09-16T09:34:00-10:00</updated>
+    <id>http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance</id>
+    <content type="html"><![CDATA[<p>First, you'll need the <code>ec2-ami-tools</code> package. Assuming you're running Ubuntu
+12.04, go into <code>/etc/apt/sources.list</code> and uncomment the <code>multiverse</code> lines.
+Then run:</p>
+
+<p><code>bash
+apt-get update
+apt-get install -y ec2-ami-tools
+</code></p>
+
+<p>Next, upload your <code>pk-*.pem</code> and <code>cert-*.pem</code> files to <code>/mnt</code> on the
+running instance. Don't worry, <code>ec2-bundle-vol</code> ignores <code>*.pem</code> and the
+entirety of <code>/mnt</code> by default, so your credentials won't get built into
+the image.</p>
+
+<p>Now, as root, create a place to put the image bundle and then build it.</p>
+
+<p>``` bash
+mkdir /mnt/bundle
+ec2-bundle-vol -d /mnt/bundle -k pk-<em>.pem -c cert-</em>.pem \</p>
+
+<pre><code>           -u YOUR_AWS_ID_WITHOUT_DASHES -r x86_64
+</code></pre>
+
+<p>```</p>
+
+<p>This will bundle up a 64-bit image in <code>/mnt/ami-instance-name</code>. Change <code>x86_64</code>
+to <code>i386</code> if you're building a 32-bit image instead. The process took
+about 2.5 minutes on an m2.4xlarge instance.</p>
+
+<p>Next, upload the AMI bundle to S3. The <code>-b</code> argument to <code>ec2-upload-bundle</code>
+lets you specify which S3 bucket to upload to. If the argument includes a
+slash, the part after is an optional AMI name. The name doesn't mean anything
+to Amazon, but it lets you keep multiple bundles in the same bucket.</p>
+
+<p>``` bash
+ec2-upload-bundle -b my-ec2-bucket/my-ami \</p>
+
+<pre><code>-m /mnt/bundle/image.manifest.xml
+-a YOUR_AWS_ACCESS_KEY -s YOUR_AWS_SECRET_KEY
+</code></pre>
+
+<p>```</p>
+
+<p>This process also takes a couple minutes.</p>
+
+<p>Finally, register your AMI with EC2.</p>
+
+<p><code>bash
+ec2-register -K pk-*.pem -C cert-*.pem my-ec2-bucket/my-ami/image.manifest.xml
+</code></p>
+
+<p>EC2 should respond with something like:</p>
+
+<p><code>
+IMAGE   ami-deadbeef
+</code></p>
+
+<p>Voilà, you are are good to go. If you wind up doing this a lot, consider
+scripting the process <a href="http://instantbadger.blogspot.com/2009/09/how-to-create-and-save-ami-image-from.html">like Alistair Davidson did</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

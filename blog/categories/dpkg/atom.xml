@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dpkg | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/dpkg/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:28:51-07:00</updated>
+  <updated>2012-09-16T09:55:38-10:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to install Ubuntu packages non-interactively.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html"/>
-    <updated>2012-08-30T18:26:00-07:00</updated>
+    <updated>2012-08-30T18:26:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively</id>
     <content type="html"><![CDATA[<p>God bless the German OpenStreetMap developers, because enough of them like
 either Debian or Ubuntu that they ship their source code with Debian packaging.

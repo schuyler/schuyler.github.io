@@ -4,7 +4,7 @@
   <title><![CDATA[Category: osm2pgsql | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/osm2pgsql/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:28:51-07:00</updated>
+  <updated>2012-09-16T09:55:38-10:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to install Ubuntu packages non-interactively.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html"/>
-    <updated>2012-08-30T18:26:00-07:00</updated>
+    <updated>2012-08-30T18:26:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively</id>
     <content type="html"><![CDATA[<p>God bless the German OpenStreetMap developers, because enough of them like
 either Debian or Ubuntu that they ship their source code with Debian packaging.
@@ -72,7 +72,7 @@ with the right environment variable from there. Unwieldy, but it works.</p>
   <entry>
     <title type="html"><![CDATA[Why --hstore-column doesn't work in osm2pgsql.]]></title>
     <link href="http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html"/>
-    <updated>2012-08-30T18:00:00-07:00</updated>
+    <updated>2012-08-30T18:00:00-10:00</updated>
     <id>http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql</id>
     <content type="html"><![CDATA[<p>Today I tried using the <code>--hstore-column</code> option in
 <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> to import all the

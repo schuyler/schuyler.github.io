@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How to install Ubuntu packages non-interactively. - hoc est repo meum.</title>
+  <title>How to make an AMI from a running Ubuntu EC2 instance. - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="God bless the German OpenStreetMap developers, because enough of them like
-either Debian or Ubuntu that they ship their source code with Debian &hellip;">
+  <meta name="description" content="First, you&#8217;ll need the ec2-ami-tools package. Assuming you&#8217;re running Ubuntu
+12.04, go into /etc/apt/sources.list and uncomment the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html">
+  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +68,7 @@ either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   
   <header>
     
-      <h1 class="entry-title">How to install Ubuntu packages non-interactively.</h1>
+      <h1 class="entry-title">How to make an AMI from a running Ubuntu EC2 instance.</h1>
     
     
       <p class="meta">
@@ -84,69 +84,76 @@ either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   
 
 
-<time datetime="2012-08-30T18:26:00-10:00" pubdate data-updated="true">2012-08-30</time>
+<time datetime="2012-09-16T09:34:00-10:00" pubdate data-updated="true">2012-09-16</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>God bless the German OpenStreetMap developers, because enough of them like
-either Debian or Ubuntu that they ship their source code with Debian packaging.
-Building <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> becomes a
-simple matter of doing this:</p>
+<div class="entry-content"><p>First, you&#8217;ll need the <code>ec2-ami-tools</code> package. Assuming you&#8217;re running Ubuntu
+12.04, go into <code>/etc/apt/sources.list</code> and uncomment the <code>multiverse</code> lines.
+Then run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update
+</span><span class='line'>apt-get install -y ec2-ami-tools
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, upload your <code>pk-*.pem</code> and <code>cert-*.pem</code> files to <code>/mnt</code> on the
+running instance. Don&#8217;t worry, <code>ec2-bundle-vol</code> ignores <code>*.pem</code> and the
+entirety of <code>/mnt</code> by default, so your credentials won&#8217;t get built into
+the image.</p>
+
+<p>Now, as root, create a place to put the image bundle and then build it.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql/
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>osm2pgsql
-</span><span class='line'><span class="nv">$ </span>debuild
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir /mnt/bundle
+</span><span class='line'>ec2-bundle-vol -d /mnt/bundle -k pk-*.pem -c cert-*.pem <span class="se">\</span>
+</span><span class='line'>               -u YOUR_AWS_ID_WITHOUT_DASHES -r x86_64
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>If you do this, you wind up with two Debian packages:</p>
+<p>This will bundle up a 64-bit image in <code>/mnt/ami-instance-name</code>. Change <code>x86_64</code>
+to <code>i386</code> if you&#8217;re building a 32-bit image instead. The process took
+about 2.5 minutes on an m2.4xlarge instance.</p>
+
+<p>Next, upload the AMI bundle to S3. The <code>-b</code> argument to <code>ec2-upload-bundle</code>
+lets you specify which S3 bucket to upload to. If the argument includes a
+slash, the part after is an optional AMI name. The name doesn&#8217;t mean anything
+to Amazon, but it lets you keep multiple bundles in the same bucket.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ls ../*.deb
-</span><span class='line'>../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
-</span><span class='line'>../osm2pgsql_0.80.0-13~precise1_amd64.deb
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ec2-upload-bundle -b my-ec2-bucket/my-ami <span class="se">\</span>
+</span><span class='line'>    -m /mnt/bundle/image.manifest.xml
+</span><span class='line'>    -a YOUR_AWS_ACCESS_KEY -s YOUR_AWS_SECRET_KEY
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Which is great, because then you can install
-<code>openstreetmap-postgis-db-setup</code> using, say, <code>dpkg -i</code>, and it&#8217;ll
-automatically create a <code>gis</code> user and a <code>gis</code> database with PostGIS
-extensions for use with <code>osm2pgsql</code>. The not-so-great part is that the
-package install asks you a bunch of questions about what you want to call
-the database and the PostgreSQL user, which is fine, until you&#8217;re trying to
-automate the process of building a Planet.osm database on EC2, and then it
-means your script will hang on a silly curses prompt.</p>
+<p>This process also takes a couple minutes.</p>
 
-<!-- more -->
-
-
-<p>The solution I found by searching the Internet is to <a href="http://serverfault.com/questions/197495/ubuntu-dpkg-non-interactive-installation">use the
-DEBIAN_FRONTEND environment variable</a>:</p>
+<p>Finally, register your AMI with EC2.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive dpkg --install ../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ec2-register -K pk-*.pem -C cert-*.pem my-ec2-bucket/my-ami/image.manifest.xml
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Which is great if you&#8217;re root. But try to do it with <code>sudo</code> and you&#8217;re
-boned, because <code>sudo</code> clears the environment as a security measure. Here&#8217;s
-the fix for that:</p>
+<p>EC2 should respond with something like:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo su -c <span class="s1">&#39;DEBIAN_FRONTEND=noninteractive dpkg --install ../*.deb&#39;</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>IMAGE   ami-deadbeef
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This uses <code>sudo</code> to start a root shell via <code>su</code> and then executes <code>dpkg</code>
-with the right environment variable from there. Unwieldy, but it works.</p>
+<p>Voilà, you are are good to go. If you wind up doing this a lot, consider
+scripting the process <a href="http://instantbadger.blogspot.com/2009/09/how-to-create-and-save-ami-image-from.html">like Alistair Davidson did</a>.</p>
 </div>
 
 
@@ -169,12 +176,12 @@ with the right environment variable from there. Unwieldy, but it works.</p>
   
 
 
-<time datetime="2012-08-30T18:26:00-10:00" pubdate data-updated="true">2012-08-30</time>
+<time datetime="2012-09-16T09:34:00-10:00" pubdate data-updated="true">2012-09-16</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/dpkg/'>dpkg</a>, <a class='category' href='/blog/categories/osm2pgsql/'>osm2pgsql</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+    <a class='category' href='/blog/categories/ec2/'>ec2</a>
   
 </span>
 
@@ -183,7 +190,7 @@ with the right environment variable from there. Unwieldy, but it works.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html" >Tweet</a>
   
   
   
@@ -194,10 +201,8 @@ with the right environment variable from there. Unwieldy, but it works.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html" title="Previous Post: Why --hstore-column doesn't work in osm2pgsql.">&laquo; Why --hstore-column doesn't work in osm2pgsql.</a>
+        <a class="basic-alignment left" href="/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html" title="Previous Post: How to fix install_name_tool errors with virtualenv on OS X.">&laquo; How to fix install_name_tool errors with virtualenv on OS X.</a>
       
-      
-        <a class="basic-alignment right" href="/blog/how-to-permanently-remove-files-from-a-git-repo.html" title="Next Post: How to permanently remove files from a Git repository.">How to permanently remove files from a Git repository. &raquo;</a>
       
     </p>
   </footer>
@@ -330,8 +335,8 @@ with the right environment variable from there. Unwieldy, but it works.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html';
-        var disqus_url = 'http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html';
+        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html';
+        var disqus_url = 'http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html';
         var disqus_script = 'embed.js';
       
     (function () {

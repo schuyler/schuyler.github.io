@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:28:51-07:00</updated>
+  <updated>2012-09-16T09:55:38-10:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to setup a new Octopress blog on Github Pages.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html"/>
-    <updated>2012-08-29T18:10:00-07:00</updated>
+    <updated>2012-08-29T18:10:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages</id>
     <content type="html"><![CDATA[<p>The yak shaving started when I wanted a new blog that was easy to update, easy
 to maintain, didn't depend on anything fancy, wasn't my personal blog (still

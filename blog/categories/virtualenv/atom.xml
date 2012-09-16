@@ -4,7 +4,7 @@
   <title><![CDATA[Category: virtualenv | hoc est repo meum.]]></title>
   <link href="http://schuyler.github.com/blog/categories/virtualenv/atom.xml" rel="self"/>
   <link href="http://schuyler.github.com/"/>
-  <updated>2012-09-07T17:28:51-07:00</updated>
+  <updated>2012-09-16T09:55:38-10:00</updated>
   <id>http://schuyler.github.com/</id>
   <author>
     <name><![CDATA[Schuyler Erle]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to fix install_name_tool errors with virtualenv on OS X.]]></title>
     <link href="http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html"/>
-    <updated>2012-09-07T17:10:00-07:00</updated>
+    <updated>2012-09-07T17:10:00-10:00</updated>
     <id>http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/pypa/virtualenv/issues/7#issuecomment-3354141">This Github ticket comment</a>
 solved an issue I was having on OS X 10.6, where running <code>virtualenv .</code> locally

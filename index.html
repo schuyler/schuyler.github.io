@@ -9,10 +9,8 @@
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="This Github ticket comment
-solved an issue I was having on OS X 10.6, where running virtualenv . locally
-failed with this error: 1
-2 &hellip;">
+  <meta name="description" content="First, you&#8217;ll need the ec2-ami-tools package. Assuming you&#8217;re running Ubuntu
+12.04, go into /etc/apt/sources.list and uncomment the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +71,104 @@ failed with this error: 1
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/how-to-make-an-ami-from-a-running-ec2-instance.html">How to make an AMI from a running Ubuntu EC2 instance.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-16T09:34:00-10:00" pubdate data-updated="true">2012-09-16</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First, you&#8217;ll need the <code>ec2-ami-tools</code> package. Assuming you&#8217;re running Ubuntu
+12.04, go into <code>/etc/apt/sources.list</code> and uncomment the <code>multiverse</code> lines.
+Then run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update
+</span><span class='line'>apt-get install -y ec2-ami-tools
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, upload your <code>pk-*.pem</code> and <code>cert-*.pem</code> files to <code>/mnt</code> on the
+running instance. Don&#8217;t worry, <code>ec2-bundle-vol</code> ignores <code>*.pem</code> and the
+entirety of <code>/mnt</code> by default, so your credentials won&#8217;t get built into
+the image.</p>
+
+<p>Now, as root, create a place to put the image bundle and then build it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir /mnt/bundle
+</span><span class='line'>ec2-bundle-vol -d /mnt/bundle -k pk-*.pem -c cert-*.pem <span class="se">\</span>
+</span><span class='line'>               -u YOUR_AWS_ID_WITHOUT_DASHES -r x86_64
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will bundle up a 64-bit image in <code>/mnt/ami-instance-name</code>. Change <code>x86_64</code>
+to <code>i386</code> if you&#8217;re building a 32-bit image instead. The process took
+about 2.5 minutes on an m2.4xlarge instance.</p>
+
+<p>Next, upload the AMI bundle to S3. The <code>-b</code> argument to <code>ec2-upload-bundle</code>
+lets you specify which S3 bucket to upload to. If the argument includes a
+slash, the part after is an optional AMI name. The name doesn&#8217;t mean anything
+to Amazon, but it lets you keep multiple bundles in the same bucket.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ec2-upload-bundle -b my-ec2-bucket/my-ami <span class="se">\</span>
+</span><span class='line'>    -m /mnt/bundle/image.manifest.xml
+</span><span class='line'>    -a YOUR_AWS_ACCESS_KEY -s YOUR_AWS_SECRET_KEY
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This process also takes a couple minutes.</p>
+
+<p>Finally, register your AMI with EC2.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ec2-register -K pk-*.pem -C cert-*.pem my-ec2-bucket/my-ami/image.manifest.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>EC2 should respond with something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>IMAGE   ami-deadbeef
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Voilà, you are are good to go. If you wind up doing this a lot, consider
+scripting the process <a href="http://instantbadger.blogspot.com/2009/09/how-to-create-and-save-ami-image-from.html">like Alistair Davidson did</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html">How to fix install_name_tool errors with virtualenv on OS X.</a></h1>
     
     
@@ -89,7 +185,7 @@ failed with this error: 1
   
 
 
-<time datetime="2012-09-07T17:10:00-07:00" pubdate data-updated="true">2012-09-07</time>
+<time datetime="2012-09-07T17:10:00-10:00" pubdate data-updated="true">2012-09-07</time>
         
       </p>
     
@@ -148,7 +244,7 @@ virtualenv fork.</p>
   
 
 
-<time datetime="2012-09-06T10:22:00-07:00" pubdate data-updated="true">2012-09-06</time>
+<time datetime="2012-09-06T10:22:00-10:00" pubdate data-updated="true">2012-09-06</time>
         
       </p>
     
@@ -192,7 +288,7 @@ permanently?</p>
   
 
 
-<time datetime="2012-08-30T18:26:00-07:00" pubdate data-updated="true">2012-08-30</time>
+<time datetime="2012-08-30T18:26:00-10:00" pubdate data-updated="true">2012-08-30</time>
         
       </p>
     
@@ -265,7 +361,7 @@ means your script will hang on a silly curses prompt.</p>
   
 
 
-<time datetime="2012-08-30T18:00:00-07:00" pubdate data-updated="true">2012-08-30</time>
+<time datetime="2012-08-30T18:00:00-10:00" pubdate data-updated="true">2012-08-30</time>
         
       </p>
     
@@ -315,7 +411,7 @@ was created but never populated. What the hell?</p>
   
 
 
-<time datetime="2012-08-29T18:10:00-07:00" pubdate data-updated="true">2012-08-29</time>
+<time datetime="2012-08-29T18:10:00-10:00" pubdate data-updated="true">2012-08-29</time>
         
       </p>
     
@@ -364,7 +460,7 @@ for actual detailed instructions.</p>
   
 
 
-<time datetime="2012-08-29T15:43:00-07:00" pubdate data-updated="true">2012-08-29</time>
+<time datetime="2012-08-29T15:43:00-10:00" pubdate data-updated="true">2012-08-29</time>
         
       </p>
     
@@ -412,7 +508,7 @@ screwing up everything else in my local Octopress repo?</p>
   
 
 
-<time datetime="2012-08-29T12:20:00-07:00" pubdate data-updated="true">2012-08-29</time>
+<time datetime="2012-08-29T12:20:00-10:00" pubdate data-updated="true">2012-08-29</time>
         
       </p>
     
@@ -465,6 +561,10 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/how-to-make-an-ami-from-a-running-ec2-instance.html">How to make an AMI from a running Ubuntu EC2 instance.</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html">How to fix install_name_tool errors with virtualenv on OS X.</a>
       </li>
     
@@ -478,10 +578,6 @@ that span the wond&#8217;rous Internet. <em>Ave atque vale</em>, fellow travelle
     
       <li class="post">
         <a href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html">Why &#8211;hstore-column doesn&#8217;t work in osm2pgsql.</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html">How to setup a new Octopress blog on Github Pages.</a>
       </li>
     
   </ul>

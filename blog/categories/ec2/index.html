@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How to install Ubuntu packages non-interactively. - hoc est repo meum.</title>
+  <title>Category: ec2 - hoc est repo meum.</title>
   <meta name="author" content="Schuyler Erle">
 
   
-  <meta name="description" content="God bless the German OpenStreetMap developers, because enough of them like
-either Debian or Ubuntu that they ship their source code with Debian &hellip;">
+  <meta name="description" content="Category: ec2">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html">
+  <link rel="canonical" href="http://schuyler.github.comblog/categories/ec2/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,150 +63,36 @@ either Debian or Ubuntu that they ship their source code with Debian &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">How to install Ubuntu packages non-interactively.</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T18:26:00-10:00" pubdate data-updated="true">2012-08-30</time>
-        
-      </p>
+    <h1 class="entry-title">Category: ec2</h1>
     
   </header>
-
-
-<div class="entry-content"><p>God bless the German OpenStreetMap developers, because enough of them like
-either Debian or Ubuntu that they ship their source code with Debian packaging.
-Building <a href="http://wiki.openstreetmap.org/wiki/Osm2pgsql">osm2pgsql</a> becomes a
-simple matter of doing this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql/
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>osm2pgsql
-</span><span class='line'><span class="nv">$ </span>debuild
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you do this, you wind up with two Debian packages:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ls ../*.deb
-</span><span class='line'>../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
-</span><span class='line'>../osm2pgsql_0.80.0-13~precise1_amd64.deb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Which is great, because then you can install
-<code>openstreetmap-postgis-db-setup</code> using, say, <code>dpkg -i</code>, and it&#8217;ll
-automatically create a <code>gis</code> user and a <code>gis</code> database with PostGIS
-extensions for use with <code>osm2pgsql</code>. The not-so-great part is that the
-package install asks you a bunch of questions about what you want to call
-the database and the PostgreSQL user, which is fine, until you&#8217;re trying to
-automate the process of building a Planet.osm database on EC2, and then it
-means your script will hang on a silly curses prompt.</p>
-
-<!-- more -->
-
-
-<p>The solution I found by searching the Internet is to <a href="http://serverfault.com/questions/197495/ubuntu-dpkg-non-interactive-installation">use the
-DEBIAN_FRONTEND environment variable</a>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive dpkg --install ../openstreetmap-postgis-db-setup_0.80.0-13~precise1_all.deb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Which is great if you&#8217;re root. But try to do it with <code>sudo</code> and you&#8217;re
-boned, because <code>sudo</code> clears the environment as a security measure. Here&#8217;s
-the fix for that:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo su -c <span class="s1">&#39;DEBIAN_FRONTEND=noninteractive dpkg --install ../*.deb&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This uses <code>sudo</code> to start a root shell via <code>su</code> and then executes <code>dpkg</code>
-with the right environment variable from there. Unwieldy, but it works.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Schuyler Erle</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2012</h2>
+
+<article>
+  
+<h1><a href="/blog/how-to-make-an-ami-from-a-running-ec2-instance.html">How to make an AMI from a running Ubuntu EC2 instance.</a></h1>
+<time datetime="2012-09-16T09:34:00-10:00" pubdate><span class='month'>Sep</span> <span class='day'>16</span> <span class='year'>2012</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/ec2/'>ec2</a></span>
+</footer>
 
 
-<time datetime="2012-08-30T18:26:00-10:00" pubdate data-updated="true">2012-08-30</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/dpkg/'>dpkg</a>, <a class='category' href='/blog/categories/osm2pgsql/'>osm2pgsql</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html" data-via="schuyler" data-counturl="http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html" >Tweet</a>
-  
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html" title="Previous Post: Why --hstore-column doesn't work in osm2pgsql.">&laquo; Why --hstore-column doesn't work in osm2pgsql.</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/how-to-permanently-remove-files-from-a-git-repo.html" title="Next Post: How to permanently remove files from a Git repository.">How to permanently remove files from a Git repository. &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -329,10 +214,7 @@ with the right environment variable from there. Unwieldy, but it works.</p>
       var disqus_shortname = 'hocestrepomeum';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html';
-        var disqus_url = 'http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -2,48 +2,54 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://schuyler.github.com/blog/how-to-shave-a-yak-pt-1.html</loc>
-        <lastmod>2012-08-30T18:45:12-07:00</lastmod>
+        <lastmod>2012-08-30T15:45:12-10:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-cherry-pick-a-git-commit-from-another-repo.html
         </loc>
-        <lastmod>2012-08-30T18:45:03-07:00</lastmod>
+        <lastmod>2012-08-30T15:45:03-10:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-setup-a-new-octopress-blog-on-github-pages.html
         </loc>
-        <lastmod>2012-08-30T18:45:10-07:00</lastmod>
+        <lastmod>2012-08-30T15:45:10-10:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/blog/why-hstore-column-doesnt-work-in-osm2pgsql.html</loc>
-        <lastmod>2012-09-02T23:03:51-07:00</lastmod>
+        <lastmod>2012-09-02T20:03:51-10:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-install-ubuntu-packages-non-interactively.html
         </loc>
-        <lastmod>2012-08-30T18:45:17-07:00</lastmod>
+        <lastmod>2012-08-30T15:45:17-10:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-permanently-remove-files-from-a-git-repo.html
         </loc>
-        <lastmod>2012-09-06T11:46:38-07:00</lastmod>
+        <lastmod>2012-09-06T08:46:38-10:00</lastmod>
     </url>
     <url>
         <loc>
             http://schuyler.github.com/blog/how-to-fix-install-name-tool-errors-with-virtualenv-on-os-x.html
         </loc>
-        <lastmod>2012-09-07T17:28:44-07:00</lastmod>
+        <lastmod>2012-09-07T14:28:44-10:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://schuyler.github.com/blog/how-to-make-an-ami-from-a-running-ec2-instance.html
+        </loc>
+        <lastmod>2012-09-16T09:54:28-10:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/blog/archives/</loc>
-        <lastmod>2012-09-07T17:28:44-07:00</lastmod>
+        <lastmod>2012-09-16T09:54:28-10:00</lastmod>
     </url>
     <url>
         <loc>http://schuyler.github.com/</loc>
-        <lastmod>2012-09-07T17:28:44-07:00</lastmod>
+        <lastmod>2012-09-16T09:54:28-10:00</lastmod>
     </url>
 </urlset>
