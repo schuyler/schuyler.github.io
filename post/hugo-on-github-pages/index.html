@@ -1,0 +1,115 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Hugo on Github Pages -</title><meta name=description content="The earlier iteration of schuyler.info was hosted in Octopress, which was written in Ruby. One day I tried to write a new post after leaving the blog untouched for a long time, and long story short, I wound up in some kind of Ruby module dependency hell. This was like ten years ago, and it was too much. I shelved the site and never got back to it.
+These days it seems like the hotness in static website generation is Jekyll, but, like, it&rsquo;s Ruby."><meta name=author content="Schuyler Erle"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"schuyler.info","url":"https:\/\/schuyler.info"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/schuyler.info"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/schuyler.info","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/schuyler.info\/post\/hugo-on-github-pages\/","name":"Hugo on github pages"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":"Schuyler Erle"},"headline":"Hugo on Github Pages","description":"The earlier iteration of schuyler.info was hosted in Octopress, which was written in Ruby. One day I tried to write a new post after leaving the blog untouched for a long time, and long story short, I wound up in some kind of Ruby module dependency hell. This was like ten years ago, and it was too much. I shelved the site and never got back to it.\nThese days it seems like the hotness in static website generation is Jekyll, but, like, it\u0026rsquo;s Ruby.","inLanguage":"en","wordCount":738,"datePublished":"2023-01-16T19:51:56","dateModified":"2023-01-16T19:51:56","image":"https:\/\/schuyler.info\/underoos.jpg","keywords":[""],"mainEntityOfPage":"https:\/\/schuyler.info\/post\/hugo-on-github-pages\/","publisher":{"@type":"Organization","name":"https:\/\/schuyler.info","logo":{"@type":"ImageObject","url":"https:\/\/schuyler.info\/underoos.jpg","height":60,"width":60}}}</script><meta property="og:title" content="Hugo on Github Pages"><meta property="og:description" content="The earlier iteration of schuyler.info was hosted in Octopress, which was written in Ruby. One day I tried to write a new post after leaving the blog untouched for a long time, and long story short, I wound up in some kind of Ruby module dependency hell. This was like ten years ago, and it was too much. I shelved the site and never got back to it.
+These days it seems like the hotness in static website generation is Jekyll, but, like, it&rsquo;s Ruby."><meta property="og:image" content="https://schuyler.info/underoos.jpg"><meta property="og:url" content="https://schuyler.info/post/hugo-on-github-pages/"><meta property="og:type" content="website"><meta property="og:site_name" content="schuyler.info"><meta name=twitter:title content="Hugo on Github Pages"><meta name=twitter:description content="The earlier iteration of schuyler.info was hosted in Octopress, which was written in Ruby. One day I tried to write a new post after leaving the blog untouched for a long time, and long story short, I …"><meta name=twitter:image content="https://schuyler.info/underoos.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@schuyler"><meta name=twitter:creator content="@schuyler"><link href=https://schuyler.info/img/favicon.ico rel=icon type=image/x-icon><meta name=generator content="Hugo 0.109.0"><link rel=alternate href=https://schuyler.info/index.xml type=application/rss+xml title=schuyler.info><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://schuyler.info/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://schuyler.info/css/highlight.min.css><link rel=stylesheet href=https://schuyler.info/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button>
+<a class=navbar-brand href=https://schuyler.info>schuyler.info</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"><li><a title=Blog href=/>Blog</a></li><li><a title=About href=/page/about/>About</a></li></ul></div><div class=avatar-container><div class=avatar-img-border><a title=schuyler.info href=https://schuyler.info><img class=avatar-img src=https://schuyler.info/underoos.jpg alt=schuyler.info></a></div></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=post-heading><h1>Hugo on Github Pages</h1><span class=post-meta><i class="fas fa-calendar"></i>&nbsp;Posted on 16 Jan 2023
+&nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+&nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;738&nbsp;words</span></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>The earlier iteration of <a href=https://schuyler.info/>schuyler.info</a> was hosted in
+Octopress, which was written in Ruby. One day I tried to write a new post after
+leaving the blog untouched for a long time, and long story short, I wound up in
+some kind of Ruby module dependency hell. This was like ten years ago, and it
+was too much. I shelved the site and never got back to it.</p><p>These days it seems like the hotness in static website generation is Jekyll,
+but, like, it&rsquo;s Ruby. So no.</p><p>One alternative seems to be <a href=https://gohugo.io/>Hugo</a>, which is written in Go
+and is one language I trust (sort of) to get dependencies right. I installed it
+on MacOS with Homebrew using <code>brew install hugo</code>. So far so good.</p><p>Another wrinkle was that the Octopress site was already in the <code>master</code> branch of
+the <a href=https://github.com/schuyler/schuyler.github.io>site repo</a>. I decided to
+start over with a <code>main</code> branch using <code>git switch --orphan</code> as described in
+this <a href=https://stackoverflow.com/questions/34100048/create-empty-branch-on-github>Stack Overflow post</a>
+followed by <code>git commit --allow-empty</code>.</p><h1 id=install-hugo>Install Hugo</h1><p>The <a href=https://gohugo.io/getting-started/quick-start/>Hugo set up instructions</a>
+seem comprehensive. Need the <code>--force</code> flag on the directory because it already
+exists.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>hugo new site schuyler.github.io --force
+</span></span></code></pre></div><h1 id=add-a-theme>Add a theme</h1><p>Okay, cool. Gotta have a theme, themes are cool. I choose
+<a href=https://themes.gohugo.io/themes/beautifulhugo/>BeautifulHugo</a>.
+Apparently you can include the theme as a Git module but no way do I want to do
+that, because the source repo might go away. I don&rsquo;t want updates. I want my
+blog to stay the same forever, nice and stable, easy to post to any old time.</p><p>It&rsquo;s surprisingly challenging to <a href=https://stackoverflow.com/a/71971526>checkout a bare Git repo with no
+history</a> if
+the provider doesn&rsquo;t supply a ZIP file. Fortunately I can Google for Stack
+Overflow results as good as anyone.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>git clone --depth<span class=o>=</span><span class=m>1</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> rm -rf themes/beautifulhugo/.git
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git add themes/beautifulhugo
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Add a static version of the BeautifulHugo theme&#34;</span>
+</span></span></code></pre></div><h1 id=customize-the-theme>Customize the theme</h1><p>Now BeautifulHugo suggests starting with the example site, so that&rsquo;s what I did.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>cp -r themes/beautifulhugo/exampleSite/* .
+</span></span><span class=line><span class=cl>hugo serve -D
+</span></span></code></pre></div><p>The <code>-D</code> flag tells hugo to render draft content.</p><p>Then I went through <code>config.toml</code>, changing the title, subtitle, and social
+media links. I also commented out most of the <code>menu.main</code> stuff.</p><p>I added an avatar image under <code>static/underoos.jpg</code> and then set <code>Params.logo</code>
+to <code>underoos.jpg</code>. I changed the <code>dateFormat</code> and uncommented <code>hideAuthor</code> to
+set it to true. I disabled <code>socialShare</code> because ugh.</p><p>Finally I renamed <code>content/_index.md</code> to <code>__index.md</code> to remove the front
+matter but not delete the file because otherwise I will forget that it exists.</p><h1 id=write-a-first-post>Write a first post</h1><p>Ok. New post with <code>hugo new posts/slug.md</code>. Great, it prints out the file name,
+now I have to cut n paste it into an editor, bleh. But, it does work. Now to
+add this post as well.</p><h1 id=add-gitignore>Add .gitignore</h1><p>I added a <code>.gitignore</code> and then checked it all in:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>*.swp
+</span></span><span class=line><span class=cl>*.lock
+</span></span></code></pre></div><h1 id=set-up-github-pages-build>Set up Github Pages build</h1><p>So, push <code>main</code> to <code>origin</code>, but now I need to add the Github Action that will
+<a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>actually render the site</a>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mkdir -p .github/workflows
+</span></span><span class=line><span class=cl>cat &gt; .github/workflows/gh-pages.yml &lt;&lt;End
+</span></span><span class=line><span class=cl>name: github pages
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>on:
+</span></span><span class=line><span class=cl>  push:
+</span></span><span class=line><span class=cl>    branches:
+</span></span><span class=line><span class=cl>      - main  # Set a branch that will trigger a deployment
+</span></span><span class=line><span class=cl>  pull_request:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>jobs:
+</span></span><span class=line><span class=cl>  deploy:
+</span></span><span class=line><span class=cl>    runs-on: ubuntu-22.04
+</span></span><span class=line><span class=cl>    steps:
+</span></span><span class=line><span class=cl>      - uses: actions/checkout@v3
+</span></span><span class=line><span class=cl>        with:
+</span></span><span class=line><span class=cl>          submodules: true  # Fetch Hugo themes (true OR recursive)
+</span></span><span class=line><span class=cl>          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Setup Hugo
+</span></span><span class=line><span class=cl>        uses: peaceiris/actions-hugo@v2
+</span></span><span class=line><span class=cl>        with:
+</span></span><span class=line><span class=cl>          hugo-version: &#39;latest&#39;
+</span></span><span class=line><span class=cl>          # extended: true
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Build
+</span></span><span class=line><span class=cl>        run: hugo --minify
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Deploy
+</span></span><span class=line><span class=cl>        uses: peaceiris/actions-gh-pages@v3
+</span></span><span class=line><span class=cl>        if: github.ref == &#39;refs/heads/main&#39;
+</span></span><span class=line><span class=cl>        with:
+</span></span><span class=line><span class=cl>          github_token: ${{ secrets.GITHUB_TOKEN }}
+</span></span><span class=line><span class=cl>          publish_dir: ./public
+</span></span></code></pre></div><p>Don&rsquo;t forget to update <code>baseurl</code> in <code>config.toml</code> like the Hugo doc says.</p><p>Also, set the site CNAME, commit and push it all up.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>echo schuyler.info &gt; static/CNAME
+</span></span><span class=line><span class=cl>git add .github/workflows/gh-pages.yml static/CNAME config.toml
+</span></span><span class=line><span class=cl>git commit -m &#34;Add GH action and Pages CNAME&#34;
+</span></span></code></pre></div><h1 id=configuring-a-custom-domain>Configuring a custom domain</h1><p>Following this <a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#about-custom-domain-configuration>custom domain
+configuration</a>
+doc, I need to go into the DNS for <code>schuyler.info</code> and make sure to set the
+correct IPs for the <code>A</code> record for my domain, and the <code>CNAME</code> record to point
+to <code>schuyler.github.io</code> (and <em>not</em> <code>schuyler.github.com</code> which is what it <em>was</em>
+set to, which tells you just how long ago I messed with this last).</p><p>Finally, go into <em>Settings → Pages</em> in Github, set the publication branch to
+<code>gh-pages</code>, set the custom domain, wait for the DNS check to succeed
+(eventually) and finally click <em>Enforce HTTPS</em> and voilá.</p><p>That was definitely not too much work. What is this, 2023 already?</p></article><ul class="pager blog-pager"><li class=previous><a href=https://schuyler.info/post/fresh-start-for-schuyler-info/ data-toggle=tooltip data-placement=top title="A fresh start for schuyler.info">&larr; Previous Post</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"><li><a href=https://github.com/schuyler title=GitHub><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-github fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://twitter.com/schuyler title=Twitter><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://linkedin.com/in/sderle title=LinkedIn><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://www.instagram.com/sderle title=Instagram><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://www.youtube.com/user/sderle title=Youtube><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-youtube fa-stack-1x fa-inverse"></i></span></a></li><li><a href=https://soundcloud.com/schuyler-erle title=SoundCloud><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-soundcloud fa-stack-1x fa-inverse"></i></span></a></li><li><a rel=me href=https://metasocial.com/@schuyler title=Mastodon><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fab fa-mastodon fa-stack-1x fa-inverse"></i></span></a></li><li><a href title=RSS><span class="fa-stack fa-lg"><i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-rss fa-stack-1x fa-inverse"></i></span></a></li></ul><p class="credits copyright text-muted"><a href=schuyler.info>Schuyler Erle</a>
+&nbsp;&bull;&nbsp;&copy;
+2023
+&nbsp;&bull;&nbsp;
+<a href=https://schuyler.info>schuyler.info</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.109.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-3.5.1.slim.min.js integrity=sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://schuyler.info/js/main.js></script>
+<script src=https://schuyler.info/js/highlight.min.js></script>
+<script>hljs.initHighlightingOnLoad()</script><script>$(document).ready(function(){$("pre.chroma").css("padding","0")})</script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://schuyler.info/js/load-photoswipe.js></script></body></html>
