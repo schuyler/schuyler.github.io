@@ -1,4 +1,4 @@
-baseurl = "https://schuyler.github.io"
+baseurl = "https://schuyler.info"
 DefaultContentLanguage = "en"
 title = "schuyler.info"
 theme = "beautifulhugo"
