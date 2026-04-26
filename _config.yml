@@ -1,0 +1,38 @@
+title: schuyler.info
+description: Technical projects, ideas, & solutions.
+author:
+  name: Schuyler Erle
+  github: schuyler
+  twitter: schuyler
+  linkedin: sderle
+  instagram: sderle
+  youtube: user/sderle
+  soundcloud: schuyler-erle
+  mastodon: metasocial.com/@schuyler
+  website: schuyler.info
+
+remote_theme: daattali/beautiful-jekyll
+
+navbar-links:
+  About: "about"
+
+rss-description: schuyler.info
+
+footer-links:
+  rss: true
+
+url: "https://schuyler.info"
+
+avatar: /assets/img/underoos.jpg
+favicon: /assets/img/favicon.png
+
+date_format: "%-d %B %Y"
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      reading_time: true
