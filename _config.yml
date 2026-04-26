@@ -2,6 +2,8 @@ title: schuyler.info
 description: Technical projects, ideas, & solutions.
 author:
   name: Schuyler Erle
+
+social-network-links:
   github: schuyler
   twitter: schuyler
   linkedin: sderle
@@ -9,17 +11,12 @@ author:
   youtube: user/sderle
   soundcloud: schuyler-erle
   mastodon: metasocial.com/@schuyler
-  website: schuyler.info
+  rss: true
 
 remote_theme: daattali/beautiful-jekyll
 
 navbar-links:
   About: "about"
-
-rss-description: schuyler.info
-
-footer-links:
-  rss: true
 
 url: "https://schuyler.info"
 
